@@ -1,22 +1,33 @@
 // https://www.grammarly.com/blog/plural-nouns/
 
-import irregularNouns, { nounObject } from "./irregularNouns";
+import irregularNouns from "./irregularNouns";
+import nonChangingNouns from "./nonChangingNouns";
 
-export const isIregular = (noun: string): nounObject | boolean => {
-  return irregularNouns.find((item) => item.single === noun) || false;
+type stringReturn = string | null;
+
+export const isIregular = (noun: string, count: number): stringReturn => {
+  const value = count > 1 ? "plural" : "single";
+  const getNoun = irregularNouns.find((item) => item.single === noun) || {};
+  return getNoun![value] || null;
+};
+
+export const isNonChanging = (noun: string): stringReturn => {
+  return nonChangingNouns.find((item) => item === noun) || null;
 };
 
 const makeSuffix = (count: number, noun: string): string => {
-  const value = count > 1 ? "plural" : "single";
-  const irregularNoun = isIregular(noun);
+  const nounFns = [isIregular, isNonChanging];
 
-  if (irregularNoun) {
-    console.log("irregularNoun", irregularNoun);
+  let result!: string;
 
-    return irregularNoun[value];
-  }
+  nounFns.forEach((fn) => {
+    const callFn = fn(noun, count);
+    if (callFn !== null) {
+      result = `${count} ${callFn}`;
+    }
+  });
 
-  return `${count}`;
+  return result;
 };
 
 export default makeSuffix;
