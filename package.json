@@ -14,8 +14,9 @@
   },
   "scripts": {
     "dev": "tsc -w",
-    "test": "jest src/",
     "lint": "eslint src/",
-    "test:watch": "jest src/ --watchAll"
+    "test": "jest src/ --collectCoverage",
+    "test:watch": "jest src/ --watchAll",
+    "build": "rm -rf dist && tsc"
   }
 }
