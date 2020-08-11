@@ -1,0 +1,16 @@
+{
+  "name": "makeSuffix",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/jest": "^26.0.9",
+    "jest": "^26.3.0",
+    "ts-jest": "^26.1.4",
+    "typescript": "^3.9.7"
+  },
+  "scripts": {
+    "dev": "tsc -w",
+    "test": "jest src/"
+  }
+}
