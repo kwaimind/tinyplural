@@ -8,7 +8,7 @@ type stringReturn = string | null;
 export const isIregular = (noun: string, count: number): stringReturn => {
   const value = count > 1 ? "plural" : "single";
   const getNoun = irregularNouns.find((item) => item.single === noun) || {};
-  return getNoun![value] || null;
+  return getNoun[value] || null;
 };
 
 export const isNonChanging = (noun: string): stringReturn => {
