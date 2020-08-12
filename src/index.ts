@@ -36,7 +36,7 @@ export const consonantO = (noun: string, count?: number): stringReturn => {
  * @param count The number of that noun
  */
 const makeSuffix = (noun: string, count: number): string => {
-  const nounFns = [isIregular, isNonChanging, isONNoun];
+  const nounFns = [isIregular, isNonChanging, isONNoun, consonantO];
 
   let result!: string;
 

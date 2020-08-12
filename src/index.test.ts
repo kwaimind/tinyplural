@@ -17,6 +17,12 @@ describe('When testing makeSuffix', () => {
     expect(makeSuffix('criterion', 1)).toEqual('1 criterion');
     expect(makeSuffix('criterion', 2)).toEqual('2 criteria');
   });
+  it('returns the correct constant + O noun', () => {
+    expect(makeSuffix('hero', 1)).toEqual('1 hero');
+    expect(makeSuffix('hero', 2)).toEqual('2 heroes');
+    expect(makeSuffix('tomato', 1)).toEqual('1 tomato');
+    expect(makeSuffix('tomato', 2)).toEqual('2 tomatoes');
+  });
 });
 
 describe('When testing isIregular', () => {
