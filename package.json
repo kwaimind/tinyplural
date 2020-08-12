@@ -20,5 +20,5 @@
     "test:watch": "jest src/ --watchAll",
     "build": "rm -rf dist && tsc"
   },
-  "pre-commit": "yarn lint && yarn test"
+  "pre-push": "yarn lint && yarn test"
 }
