@@ -1,4 +1,11 @@
-import makeSuffix, { isIregular, isNonChanging, isONNoun, endsInO, endsInY } from './index';
+import makeSuffix, {
+  isIregular,
+  isNonChanging,
+  isONNoun,
+  endsInO,
+  endsInY,
+  endsInFOrFe,
+} from './index';
 import nonChangingNouns from './data/nonChangingNouns';
 import irregularNouns from './data/irregularNouns';
 
@@ -28,6 +35,16 @@ describe('When testing makeSuffix', () => {
     expect(makeSuffix('zoo', 2)).toEqual('2 zoos');
     expect(makeSuffix('stereo', 1)).toEqual('1 stereo');
     expect(makeSuffix('stereo', 2)).toEqual('2 stereos');
+  });
+  it('returns a noun with f or fe removed and ves added', () => {
+    expect(makeSuffix('leaf')).toEqual('1 leaf');
+    expect(makeSuffix('leaf', 2)).toEqual('2 leaves');
+    expect(makeSuffix('knife')).toEqual('1 knife');
+    expect(makeSuffix('knife', 2)).toEqual('2 knives');
+    expect(makeSuffix('roof')).toEqual('1 roof');
+    expect(makeSuffix('roof', 2)).toEqual('2 roofs');
+    expect(makeSuffix('cliff')).toEqual('1 cliff');
+    expect(makeSuffix('cliff', 2)).toEqual('2 cliffs');
   });
   it.skip('returns the default and adds s', () => {
     expect(makeSuffix('car', 1)).toEqual('1 car');
@@ -90,6 +107,25 @@ describe('When testing endsInY', () => {
   it('returns null if does not match the rule', () => {
     expect(endsInY('lion')).toEqual(null);
     expect(endsInY('aircraft')).toEqual(null);
+  });
+});
+
+describe('When testing endsInFOrFe', () => {
+  it('returns a noun with f or fe removed and ves added', () => {
+    expect(endsInFOrFe('leaf')).toEqual('leaf');
+    expect(endsInFOrFe('leaf', 2)).toEqual('leaves');
+    expect(endsInFOrFe('knife')).toEqual('knife');
+    expect(endsInFOrFe('knife', 2)).toEqual('knives');
+  });
+  it('handles the exceptions', () => {
+    expect(endsInFOrFe('roof')).toEqual('roof');
+    expect(endsInFOrFe('roof', 2)).toEqual('roofs');
+    expect(endsInFOrFe('cliff')).toEqual('cliff');
+    expect(endsInFOrFe('cliff', 2)).toEqual('cliffs');
+  });
+  it('returns null if does not match the rule', () => {
+    expect(endsInFOrFe('lion')).toEqual(null);
+    expect(endsInFOrFe('baby')).toEqual(null);
   });
 });
 

@@ -43,6 +43,19 @@ export const endsInY = (noun: string, count = 1): stringReturn => {
   return null;
 };
 
+export const endsInFOrFe = (noun: string, count = 1): stringReturn => {
+  const exceptions = ['roof', 'cliff', 'proof'];
+
+  if (exceptions.indexOf(noun) !== -1) {
+    return count && count > 1 ? `${noun}s` : noun;
+  }
+
+  if (/(f|fe)$/gim.test(noun)) {
+    return count && count > 1 ? noun.replace(/(f|fe)$/, 'ves') : noun;
+  }
+  return null;
+};
+
 /**
  *
  * @param noun The singular noun `[hero]`
@@ -50,7 +63,7 @@ export const endsInY = (noun: string, count = 1): stringReturn => {
  * @returns A formatted string, `[2 heroes]`
  */
 const makeSuffix = (noun: string, count = 1): string => {
-  const nounFns = [isIregular, isNonChanging, isONNoun, endsInO];
+  const nounFns = [isIregular, isNonChanging, isONNoun, endsInO, endsInFOrFe];
   let result!: string;
 
   nounFns.forEach((fn) => {
