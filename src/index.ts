@@ -17,10 +17,17 @@ export const isNonChanging = (noun: string): stringReturn => {
 
 export const isONNoun = (noun: string, count?: number): stringReturn => {
   const last2Chars = noun.slice(-2);
-  if (!/on/.test(last2Chars)) {
-    return null;
+  if (/on/.test(last2Chars)) {
+    return count && count > 1 ? noun.replace(/on/, 'a') : noun;
   }
-  return count && count > 1 ? noun.replace(/on/, 'a') : noun;
+  return null;
+};
+
+export const consonantO = (noun: string, count?: number): stringReturn => {
+  if (/[^aeiou]o$/gim.test(noun)) {
+    return count && count > 1 ? `${noun}es` : noun;
+  }
+  return null;
 };
 
 /**

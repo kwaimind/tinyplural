@@ -8,36 +8,40 @@ export interface nounObject {
  */
 const irregularNouns: Array<nounObject> = [
   {
-    single: "child",
-    plural: "children",
+    single: 'child',
+    plural: 'children',
   },
   {
-    single: "goose",
-    plural: "geese",
+    single: 'goose',
+    plural: 'geese',
   },
   {
-    single: "man",
-    plural: "men",
+    single: 'man',
+    plural: 'men',
   },
   {
-    single: "woman",
-    plural: "women",
+    single: 'woman',
+    plural: 'women',
   },
   {
-    single: "tooth",
-    plural: "teeth",
+    single: 'tooth',
+    plural: 'teeth',
   },
   {
-    single: "foot",
-    plural: "feet",
+    single: 'foot',
+    plural: 'feet',
   },
   {
-    single: "mouse",
-    plural: "mice",
+    single: 'mouse',
+    plural: 'mice',
   },
   {
-    single: "person",
-    plural: "people",
+    single: 'person',
+    plural: 'people',
+  },
+  {
+    single: 'ox',
+    plural: 'oxen',
   },
 ];
 

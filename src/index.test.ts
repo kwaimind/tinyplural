@@ -1,4 +1,6 @@
-import makeSuffix, { isIregular, isNonChanging, isONNoun } from './index';
+import makeSuffix, { isIregular, isNonChanging, isONNoun, consonantO } from './index';
+import nonChangingNouns from './data/nonChangingNouns';
+import irregularNouns from './data/irregularNouns';
 
 describe('When testing makeSuffix', () => {
   it('returns the correct irregular noun', () => {
@@ -37,6 +39,19 @@ describe('When testing isNonChanging', () => {
   });
 });
 
+describe('When testing consonantO', () => {
+  it('returns an plural with es added', () => {
+    expect(consonantO('hero')).toEqual('hero');
+    expect(consonantO('hero', 2)).toEqual('heroes');
+    expect(consonantO('echo')).toEqual('echo');
+    expect(consonantO('echo', 2)).toEqual('echoes');
+  });
+  it('returns null if no non changing noun is found', () => {
+    expect(consonantO('lion')).toEqual(null);
+    expect(consonantO('aircraft')).toEqual(null);
+  });
+});
+
 describe('When testing isONNoun', () => {
   it('returns an ON type noun', () => {
     expect(isONNoun('phenomenon', 2)).toEqual('phenomena');
@@ -45,5 +60,15 @@ describe('When testing isONNoun', () => {
   it('returns null if no non changing noun is found', () => {
     expect(isONNoun('child')).toEqual(null);
     // expect(isONNoun('lion')).toEqual(null);
+  });
+});
+
+describe('Checking data arrays for duplicates', () => {
+  it('nonChangingNouns', () => {
+    expect(new Set(nonChangingNouns).size !== nonChangingNouns.length).toBe(false);
+  });
+  it('irregularNouns', () => {
+    const uniqueValues = new Set(irregularNouns.map((item) => item.single));
+    expect(uniqueValues.size < irregularNouns.length).toBe(false);
   });
 });
