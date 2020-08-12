@@ -29,14 +29,11 @@
     "lint": "eslint src/",
     "test": "jest src/ --collectCoverage",
     "test:watch": "jest src/ --watchAll",
-    "build": "rm -rf lib && tsc",
-    "prepare": "yarn build",
-    "prepublishOnly": "yarn test && yarn lint",
-    "preversion": "yarn lint"
+    "build": "rm -rf lib && tsc"
   },
   "husky": {
     "hooks": {
-      "pre-push": "yarn lint && yarn test && yarn build"
+      "pre-push": "yarn lint && yarn test"
     }
   }
 }
