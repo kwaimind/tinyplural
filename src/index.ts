@@ -33,6 +33,16 @@ export const endsInO = (noun: string, count = 1): stringReturn => {
   return null;
 };
 
+export const endsInY = (noun: string, count = 1): stringReturn => {
+  if (/[^aeiou]y$/gim.test(noun)) {
+    return count && count > 1 ? noun.replace('y', 'ies') : noun;
+  }
+  if (/[aeiou]y$/gim.test(noun)) {
+    return count && count > 1 ? `${noun}s` : noun;
+  }
+  return null;
+};
+
 /**
  *
  * @param noun The singular noun `[hero]`

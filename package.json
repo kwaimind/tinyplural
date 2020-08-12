@@ -1,8 +1,11 @@
 {
   "name": "makeSuffix",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "main": "src/index.js",
   "license": "MIT",
+  "author": {
+    "name": "Daniel Reed"
+  },
   "devDependencies": {
     "@types/jest": "^26.0.9",
     "@typescript-eslint/eslint-plugin": "^3.9.0",

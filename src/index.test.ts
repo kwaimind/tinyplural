@@ -1,4 +1,4 @@
-import makeSuffix, { isIregular, isNonChanging, isONNoun, endsInO } from './index';
+import makeSuffix, { isIregular, isNonChanging, isONNoun, endsInO, endsInY } from './index';
 import nonChangingNouns from './data/nonChangingNouns';
 import irregularNouns from './data/irregularNouns';
 
@@ -7,7 +7,7 @@ describe('When testing makeSuffix', () => {
     expect(makeSuffix('foot', 1)).toEqual('1 foot');
     expect(makeSuffix('foot', 2)).toEqual('2 feet');
   });
-  it('returns the correct non changing noun', () => {
+  it('returns the correct non-changing noun', () => {
     expect(makeSuffix('fish', 1)).toEqual('1 fish');
     expect(makeSuffix('fish', 2)).toEqual('2 fish');
   });
@@ -42,7 +42,7 @@ describe('When testing isIregular', () => {
 });
 
 describe('When testing isNonChanging', () => {
-  it('returns an non changing noun', () => {
+  it('returns an non-changing noun', () => {
     expect(isNonChanging('fish')).toEqual('fish');
     expect(isNonChanging('deer')).toEqual('deer');
   });
@@ -58,7 +58,7 @@ describe('When testing endsInO', () => {
     expect(endsInO('echo')).toEqual('echo');
     expect(endsInO('echo', 2)).toEqual('echoes');
   });
-  it('returns an vowel + o s added', () => {
+  it('returns an vowel + O with s added', () => {
     expect(endsInO('zoo')).toEqual('zoo');
     expect(endsInO('zoo', 2)).toEqual('zoos');
     expect(endsInO('stereo')).toEqual('stereo');
@@ -67,6 +67,25 @@ describe('When testing endsInO', () => {
   it('returns null if does not match the rule', () => {
     expect(endsInO('lion')).toEqual(null);
     expect(endsInO('aircraft')).toEqual(null);
+  });
+});
+
+describe('When testing endsInY', () => {
+  it('returns an constant + Y with es added', () => {
+    expect(endsInY('city')).toEqual('city');
+    expect(endsInY('city', 2)).toEqual('cities');
+    expect(endsInY('baby')).toEqual('baby');
+    expect(endsInY('baby', 2)).toEqual('babies');
+  });
+  it('returns an vowel + Y with s added', () => {
+    expect(endsInY('day')).toEqual('day');
+    expect(endsInY('day', 2)).toEqual('days');
+    expect(endsInY('guy')).toEqual('guy');
+    expect(endsInY('guy', 2)).toEqual('guys');
+  });
+  it('returns null if does not match the rule', () => {
+    expect(endsInY('lion')).toEqual(null);
+    expect(endsInY('aircraft')).toEqual(null);
   });
 });
 

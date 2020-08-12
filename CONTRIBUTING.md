@@ -8,7 +8,9 @@ We have a handful of Jest tests which try and reflect how this package is to be 
 
 ## Submitting changes
 
-Please send a [GitHub Pull Request to opengovernment](https://github.com/kwaimind/makeSuffix/pull/new/production) with a clear list of what you've done (read more about [pull requests](http://help.github.com/pull-requests/)). When you send a pull request, we really appreciate it you add tests for the feature you've added. We can always use more test coverage. Please follow our coding conventions (below) and make sure all of your commits are atomic (one feature per commit).
+If you have a suggestion, or you're working on an issue, just fork the repo, make your changes and then make a [pull request](https://github.com/kwaimind/makeSuffix/pull/new/production) into the repo's dev branch with a clear list of what you've done (read more about [pull requests](http://help.github.com/pull-requests/)).
+
+When you send a pull request, we really appreciate it you add tests for the feature you've added. We can always use more test coverage. Please follow our coding conventions (below) and make sure all of your commits are atomic (one feature per commit).
 
 Always write a clear log message for your commits. One-line messages are fine for small changes, but bigger changes should look like this:
 
