@@ -9,6 +9,8 @@ import makeSuffix, {
 import nonChangingNouns from './data/nonChangingNouns';
 import irregularNouns from './data/irregularNouns';
 
+// https://www.ef.com/wwen/english-resources/english-grammar/singular-and-plural-nouns/
+
 describe('When testing makeSuffix', () => {
   it('returns the correct irregular noun', () => {
     expect(makeSuffix('foot', 1)).toEqual('1 foot');
@@ -45,6 +47,38 @@ describe('When testing makeSuffix', () => {
     expect(makeSuffix('roof', 2)).toEqual('2 roofs');
     expect(makeSuffix('cliff')).toEqual('1 cliff');
     expect(makeSuffix('cliff', 2)).toEqual('2 cliffs');
+  });
+  it('generic tests', () => {
+    expect(makeSuffix('penny', 1)).toEqual('1 penny');
+    expect(makeSuffix('penny', 2)).toEqual('2 pennies');
+    expect(makeSuffix('spy', 1)).toEqual('1 spy');
+    expect(makeSuffix('spy', 2)).toEqual('2 spies');
+    expect(makeSuffix('city', 1)).toEqual('1 city');
+    expect(makeSuffix('city', 3)).toEqual('3 cities');
+    expect(makeSuffix('daisy', 1)).toEqual('1 daisy');
+    expect(makeSuffix('daisy', 100)).toEqual('100 daisies');
+    expect(makeSuffix('tooth', 1)).toEqual('1 tooth');
+    expect(makeSuffix('tooth', 100)).toEqual('100 teeth');
+    expect(makeSuffix('half', 1)).toEqual('1 half');
+    expect(makeSuffix('half', 2)).toEqual('2 halves');
+    expect(makeSuffix('life', 1)).toEqual('1 life');
+    expect(makeSuffix('life', 2)).toEqual('2 lives');
+    expect(makeSuffix('elf', 1)).toEqual('1 elf');
+    expect(makeSuffix('elf', 5)).toEqual('5 elves');
+    expect(makeSuffix('loaf', 1)).toEqual('1 loaf');
+    expect(makeSuffix('loaf', 5)).toEqual('5 loaves');
+    expect(makeSuffix('potato', 1)).toEqual('1 potato');
+    expect(makeSuffix('potato', 5)).toEqual('5 potatoes');
+    expect(makeSuffix('tomato', 1)).toEqual('1 tomato');
+    expect(makeSuffix('tomato', 5)).toEqual('5 tomatoes');
+  });
+  it.skip('to do', () => {
+    expect(makeSuffix('cactus', 1)).toEqual('1 cactus');
+    expect(makeSuffix('cactus', 2)).toEqual('2 cacti');
+    expect(makeSuffix('house', 1)).toEqual('2 houses');
+    expect(makeSuffix('house', 1)).toEqual('2 houses');
+    expect(makeSuffix('boat', 1)).toEqual('1 boat');
+    expect(makeSuffix('boat', 1)).toEqual('2 boats');
   });
   it.skip('returns the default and adds s', () => {
     expect(makeSuffix('car', 1)).toEqual('1 car');

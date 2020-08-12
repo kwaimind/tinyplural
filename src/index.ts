@@ -63,7 +63,7 @@ export const endsInFOrFe = (noun: string, count = 1): stringReturn => {
  * @returns A formatted string, `[2 heroes]`
  */
 const makeSuffix = (noun: string, count = 1): string => {
-  const nounFns = [isIregular, isNonChanging, isONNoun, endsInO, endsInFOrFe];
+  const nounFns = [isIregular, isNonChanging, isONNoun, endsInO, endsInY, endsInFOrFe];
   let result!: string;
 
   nounFns.forEach((fn) => {
