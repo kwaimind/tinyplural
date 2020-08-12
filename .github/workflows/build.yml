@@ -1,0 +1,26 @@
+name: Build lib
+
+on:
+  push:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@master
+        with:
+          persist-credentials: false
+          fetch-depth: 0
+      - name: Compile project
+        run: yarn build
+      - name: Commit files
+        run: |
+          git config --local user.email "${{ secrets.EMAIL_GITHUB }}"
+          git config --local user.name "kwaimind"
+          git commit -m "pushing lib build" -a
+          git checkout production
+      - name: Push changes
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.TOKEN_GITHUB }}
