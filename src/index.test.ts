@@ -1,4 +1,4 @@
-import makeSuffix, { isIregular, isNonChanging, isONNoun, consonantO } from './index';
+import makeSuffix, { isIregular, isNonChanging, isONNoun, endsInO } from './index';
 import nonChangingNouns from './data/nonChangingNouns';
 import irregularNouns from './data/irregularNouns';
 
@@ -23,6 +23,12 @@ describe('When testing makeSuffix', () => {
     expect(makeSuffix('tomato', 1)).toEqual('1 tomato');
     expect(makeSuffix('tomato', 2)).toEqual('2 tomatoes');
   });
+  it('returns the correct vowel + O noun', () => {
+    expect(makeSuffix('zoo', 1)).toEqual('1 zoo');
+    expect(makeSuffix('zoo', 2)).toEqual('2 zoos');
+    expect(makeSuffix('stereo', 1)).toEqual('1 stereo');
+    expect(makeSuffix('stereo', 2)).toEqual('2 stereos');
+  });
 });
 
 describe('When testing isIregular', () => {
@@ -45,16 +51,22 @@ describe('When testing isNonChanging', () => {
   });
 });
 
-describe('When testing consonantO', () => {
-  it('returns an plural with es added', () => {
-    expect(consonantO('hero')).toEqual('hero');
-    expect(consonantO('hero', 2)).toEqual('heroes');
-    expect(consonantO('echo')).toEqual('echo');
-    expect(consonantO('echo', 2)).toEqual('echoes');
+describe('When testing endsInO', () => {
+  it('returns an constant + O with es added', () => {
+    expect(endsInO('hero')).toEqual('hero');
+    expect(endsInO('hero', 2)).toEqual('heroes');
+    expect(endsInO('echo')).toEqual('echo');
+    expect(endsInO('echo', 2)).toEqual('echoes');
   });
-  it('returns null if no non changing noun is found', () => {
-    expect(consonantO('lion')).toEqual(null);
-    expect(consonantO('aircraft')).toEqual(null);
+  it('returns an vowel + o s added', () => {
+    expect(endsInO('zoo')).toEqual('zoo');
+    expect(endsInO('zoo', 2)).toEqual('zoos');
+    expect(endsInO('stereo')).toEqual('stereo');
+    expect(endsInO('stereo', 2)).toEqual('stereos');
+  });
+  it('returns null if does not match the rule', () => {
+    expect(endsInO('lion')).toEqual(null);
+    expect(endsInO('aircraft')).toEqual(null);
   });
 });
 

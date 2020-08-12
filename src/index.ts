@@ -5,7 +5,7 @@ import nonChangingNouns from './data/nonChangingNouns';
 
 type stringReturn = string | null;
 
-export const isIregular = (noun: string, count: number): stringReturn => {
+export const isIregular = (noun: string, count = 1): stringReturn => {
   const value = count > 1 ? 'plural' : 'single';
   const getNoun = irregularNouns.find((item) => item.single === noun) || {};
   return getNoun[value] || null;
@@ -15,7 +15,7 @@ export const isNonChanging = (noun: string): stringReturn => {
   return nonChangingNouns.find((item) => item === noun) || null;
 };
 
-export const isONNoun = (noun: string, count?: number): stringReturn => {
+export const isONNoun = (noun: string, count = 1): stringReturn => {
   const last2Chars = noun.slice(-2);
   if (/on/.test(last2Chars)) {
     return count && count > 1 ? noun.replace(/on/, 'a') : noun;
@@ -23,21 +23,24 @@ export const isONNoun = (noun: string, count?: number): stringReturn => {
   return null;
 };
 
-export const consonantO = (noun: string, count?: number): stringReturn => {
+export const endsInO = (noun: string, count = 1): stringReturn => {
   if (/[^aeiou]o$/gim.test(noun)) {
     return count && count > 1 ? `${noun}es` : noun;
+  }
+  if (/[aeiou]o$/gim.test(noun)) {
+    return count && count > 1 ? `${noun}s` : noun;
   }
   return null;
 };
 
 /**
  *
- * @param noun The singular noun
- * @param count The number of that noun
+ * @param noun The singular noun `[hero]`
+ * @param count The number of that noun, `[2]`
+ * @returns A formatted string, `[2 heroes]`
  */
-const makeSuffix = (noun: string, count: number): string => {
-  const nounFns = [isIregular, isNonChanging, isONNoun, consonantO];
-
+const makeSuffix = (noun: string, count = 1): string => {
+  const nounFns = [isIregular, isNonChanging, isONNoun, endsInO];
   let result!: string;
 
   nounFns.forEach((fn) => {
