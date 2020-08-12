@@ -8,6 +8,7 @@
     "@typescript-eslint/eslint-plugin": "^3.9.0",
     "@typescript-eslint/parser": "^3.9.0",
     "eslint": "^7.6.0",
+    "husky": "^4.2.5",
     "jest": "^26.3.0",
     "ts-jest": "^26.1.4",
     "typescript": "^3.9.7"
@@ -18,5 +19,6 @@
     "test": "jest src/ --collectCoverage",
     "test:watch": "jest src/ --watchAll",
     "build": "rm -rf dist && tsc"
-  }
+  },
+  "pre-commit": "yarn lint && yarn test"
 }
