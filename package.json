@@ -1,11 +1,16 @@
 {
   "name": "makeSuffix",
   "version": "0.0.1",
-  "main": "src/index.js",
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
   "license": "MIT",
   "author": {
     "name": "Daniel Reed"
   },
+  "keywords": [
+    "suffix",
+    "plurals"
+  ],
   "devDependencies": {
     "@types/jest": "^26.0.9",
     "@typescript-eslint/eslint-plugin": "^3.9.0",
@@ -16,16 +21,22 @@
     "ts-jest": "^26.1.4",
     "typescript": "^3.9.7"
   },
+  "files": [
+    "lib/**/*"
+  ],
   "scripts": {
     "dev": "tsc -w",
     "lint": "eslint src/",
     "test": "jest src/ --collectCoverage",
     "test:watch": "jest src/ --watchAll",
-    "build": "rm -rf dist && tsc"
+    "build": "rm -rf lib && tsc",
+    "prepare": "yarn build",
+    "prepublishOnly": "yarn test && yarn lint",
+    "preversion": "yarn lint"
   },
   "husky": {
     "hooks": {
-      "pre-push": "yarn lint && yarn test"
+      "pre-push": "yarn lint && yarn test && yarn build"
     }
   }
 }
