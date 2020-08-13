@@ -2,11 +2,18 @@
 
 makeSuffix is an easy to use utility function that helps convert your strings into their relevant plurals dynamically.
 
-```
-import makeSuffix from 'makeSuffix'
+```javascript
+import makeSuffix from 'makeSuffix';
 
-makeSuffix('hero', 2)
-//=> "2 heroes"
+const formattedDate = makeSuffix('day', 2);
+
+return (
+  <>
+    <p>Next payment due in {formattedDate}</p>
+  </>
+);
+
+// => Next payment due in 2 days
 ```
 
 It's fully written in TypeScript, with a test-suite to go with it.

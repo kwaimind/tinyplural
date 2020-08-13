@@ -12,7 +12,7 @@
     "esModuleInterop": true,
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
-    "removeComments": true
+    "removeComments": false
   },
   "include": ["src"],
   "exclude": ["node_modules", "**/*.test.ts"]

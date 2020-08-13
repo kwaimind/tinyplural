@@ -1,10 +1,13 @@
 import makeSuffix, {
   isIregular,
   isNonChanging,
-  isONNoun,
   endsInO,
   endsInY,
   endsInFOrFe,
+  otherNouns,
+  standardNouns,
+  usNouns,
+  isNouns,
 } from './index';
 import nonChangingNouns from './data/nonChangingNouns';
 import irregularNouns from './data/irregularNouns';
@@ -48,6 +51,18 @@ describe('When testing makeSuffix', () => {
     expect(makeSuffix('cliff')).toEqual('1 cliff');
     expect(makeSuffix('cliff', 2)).toEqual('2 cliffs');
   });
+  it('returns simple nouns with s added', () => {
+    expect(makeSuffix('car', 1)).toEqual('1 car');
+    expect(makeSuffix('car', 2)).toEqual('2 cars');
+    expect(makeSuffix('book', 1)).toEqual('1 book');
+    expect(makeSuffix('book', 2)).toEqual('2 books');
+    expect(makeSuffix('apple', 1)).toEqual('1 apple');
+    expect(makeSuffix('apple', 2)).toEqual('2 apples');
+    expect(makeSuffix('house', 1)).toEqual('1 house');
+    expect(makeSuffix('house', 2)).toEqual('2 houses');
+    expect(makeSuffix('boat', 1)).toEqual('1 boat');
+    expect(makeSuffix('boat', 2)).toEqual('2 boats');
+  });
   it('generic tests', () => {
     expect(makeSuffix('penny', 1)).toEqual('1 penny');
     expect(makeSuffix('penny', 2)).toEqual('2 pennies');
@@ -71,18 +86,30 @@ describe('When testing makeSuffix', () => {
     expect(makeSuffix('potato', 5)).toEqual('5 potatoes');
     expect(makeSuffix('tomato', 1)).toEqual('1 tomato');
     expect(makeSuffix('tomato', 5)).toEqual('5 tomatoes');
+    expect(makeSuffix('bus', 1)).toEqual('1 bus');
+    expect(makeSuffix('bus', 2)).toEqual('2 buses');
+    expect(makeSuffix('quiz', 1)).toEqual('1 quiz');
+    expect(makeSuffix('quiz', 2)).toEqual('2 quizzes');
+    expect(makeSuffix('box', 1)).toEqual('1 box');
+    expect(makeSuffix('box', 2)).toEqual('2 boxes');
+    expect(makeSuffix('tax', 1)).toEqual('1 tax');
+    expect(makeSuffix('tax', 2)).toEqual('2 taxes');
   });
-  it.skip('to do', () => {
+  it('odd us and is nouns', () => {
     expect(makeSuffix('cactus', 1)).toEqual('1 cactus');
-    expect(makeSuffix('cactus', 2)).toEqual('2 cacti');
-    expect(makeSuffix('house', 1)).toEqual('2 houses');
-    expect(makeSuffix('house', 1)).toEqual('2 houses');
-    expect(makeSuffix('boat', 1)).toEqual('1 boat');
-    expect(makeSuffix('boat', 1)).toEqual('2 boats');
-  });
-  it.skip('returns the default and adds s', () => {
-    expect(makeSuffix('car', 1)).toEqual('1 car');
-    expect(makeSuffix('cars', 1)).toEqual('1 car');
+    expect(makeSuffix('cactus', 2)).toEqual('2 cactuses');
+    expect(makeSuffix('fungus', 1)).toEqual('1 fungus');
+    expect(makeSuffix('fungus', 2)).toEqual('2 funguses');
+    expect(makeSuffix('stimulus', 1)).toEqual('1 stimulus');
+    expect(makeSuffix('stimulus', 2)).toEqual('2 stimuluses');
+    expect(makeSuffix('syllabus', 1)).toEqual('1 syllabus');
+    expect(makeSuffix('syllabus', 2)).toEqual('2 syllabuses');
+    expect(makeSuffix('analysis', 1)).toEqual('1 analysis');
+    expect(makeSuffix('analysis', 2)).toEqual('2 analyses');
+    expect(makeSuffix('basis', 1)).toEqual('1 basis');
+    expect(makeSuffix('basis', 2)).toEqual('2 bases');
+    expect(makeSuffix('crisis', 1)).toEqual('1 crisis');
+    expect(makeSuffix('crisis', 2)).toEqual('2 crises');
   });
 });
 
@@ -93,6 +120,20 @@ describe('When testing isIregular', () => {
   });
   it('returns null if no irregular noun is found', () => {
     expect(isIregular('footz', 1)).toEqual(null);
+  });
+});
+
+describe('When testing otherNouns', () => {
+  it('returns an the correct noun', () => {
+    expect(otherNouns('bus', 1)).toEqual('bus');
+    expect(otherNouns('bus', 2)).toEqual('buses');
+    expect(otherNouns('quiz', 1)).toEqual('quiz');
+    expect(otherNouns('quiz', 2)).toEqual('quizzes');
+    expect(otherNouns('box', 1)).toEqual('box');
+    expect(otherNouns('box', 2)).toEqual('boxes');
+  });
+  it('returns null if no irregular noun is found', () => {
+    expect(otherNouns('car')).toEqual(null);
   });
 });
 
@@ -163,14 +204,38 @@ describe('When testing endsInFOrFe', () => {
   });
 });
 
-describe('When testing isONNoun', () => {
-  it('returns an ON type noun', () => {
-    expect(isONNoun('phenomenon', 2)).toEqual('phenomena');
-    expect(isONNoun('criterion', 2)).toEqual('criteria');
+describe('When testing standardNouns', () => {
+  it('returns simple noun with s', () => {
+    expect(standardNouns('car', 1)).toEqual('car');
+    expect(standardNouns('car', 2)).toEqual('cars');
+    expect(standardNouns('book', 1)).toEqual('book');
+    expect(standardNouns('book', 2)).toEqual('books');
+    expect(standardNouns('apple', 1)).toEqual('apple');
+    expect(standardNouns('apple', 2)).toEqual('apples');
   });
-  it('returns null if no non changing noun is found', () => {
-    expect(isONNoun('child')).toEqual(null);
-    // expect(isONNoun('lion')).toEqual(null);
+});
+
+describe('When testing usNouns', () => {
+  it('returns i for nouns ending in us', () => {
+    expect(usNouns('cactus', 1)).toEqual('cactus');
+    expect(usNouns('cactus', 2)).toEqual('cacti');
+    expect(usNouns('fungus', 1)).toEqual('fungus');
+    expect(usNouns('fungus', 2)).toEqual('fungi');
+    expect(usNouns('stimulus', 1)).toEqual('stimulus');
+    expect(usNouns('stimulus', 2)).toEqual('stimuli');
+    expect(usNouns('syllabus', 1)).toEqual('syllabus');
+    expect(usNouns('syllabus', 2)).toEqual('syllabi');
+  });
+});
+
+describe('When testing isNouns', () => {
+  it('returns i for nouns ending in us', () => {
+    expect(isNouns('analysis', 1)).toEqual('analysis');
+    expect(isNouns('analysis', 2)).toEqual('analyses');
+    expect(isNouns('basis', 1)).toEqual('basis');
+    expect(isNouns('basis', 2)).toEqual('bases');
+    expect(isNouns('crisis', 1)).toEqual('crisis');
+    expect(isNouns('crisis', 2)).toEqual('crises');
   });
 });
 

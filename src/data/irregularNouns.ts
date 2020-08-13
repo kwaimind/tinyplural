@@ -43,6 +43,14 @@ const irregularNouns: Array<nounObject> = [
     single: 'ox',
     plural: 'oxen',
   },
+  {
+    single: 'phenomenon',
+    plural: 'phenomena',
+  },
+  {
+    single: 'criterion',
+    plural: 'criteria',
+  },
 ];
 
 export default irregularNouns;
