@@ -1,5 +1,7 @@
 # ✍ makeSuffix
 
+**VERY MUCH A WORK IN PROGRESS**
+
 makeSuffix is an easy to use utility function that helps convert your strings into their relevant plurals dynamically.
 
 ```javascript
