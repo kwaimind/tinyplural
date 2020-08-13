@@ -2,6 +2,8 @@
 
 **VERY MUCH A WORK IN PROGRESS**
 
+> A tiny 6kb pluralizer for English nouns
+
 makeSuffix is an easy to use utility function that helps convert your strings into their relevant plurals dynamically.
 
 ```javascript
