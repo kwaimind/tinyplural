@@ -12,16 +12,20 @@ import makeSuffix, {
 import nonChangingNouns from './data/nonChangingNouns';
 import irregularNouns from './data/irregularNouns';
 
-// https://www.ef.com/wwen/english-resources/english-grammar/singular-and-plural-nouns/
+let randomCount: number;
+
+beforeAll(() => {
+  randomCount = Math.floor(Math.random() * 100) + 1;
+});
 
 describe('When testing makeSuffix', () => {
   it('returns the correct irregular noun', () => {
     expect(makeSuffix('foot', 1)).toEqual('1 foot');
-    expect(makeSuffix('foot', 2)).toEqual('2 feet');
+    expect(makeSuffix('foot', randomCount)).toEqual(`${randomCount} feet`);
   });
   it('returns the correct non-changing noun', () => {
     expect(makeSuffix('fish', 1)).toEqual('1 fish');
-    expect(makeSuffix('fish', 2)).toEqual('2 fish');
+    expect(makeSuffix('fish', randomCount)).toEqual(`${randomCount} fish`);
   });
   it('returns the correct ON noun', () => {
     expect(makeSuffix('phenomenon', 1)).toEqual('1 phenomenon');
@@ -94,6 +98,8 @@ describe('When testing makeSuffix', () => {
     expect(makeSuffix('box', 2)).toEqual('2 boxes');
     expect(makeSuffix('tax', 1)).toEqual('1 tax');
     expect(makeSuffix('tax', 2)).toEqual('2 taxes');
+    expect(makeSuffix('contributor', 2)).toEqual('2 contributors');
+    expect(makeSuffix('guide', 2)).toEqual('2 guides');
   });
   it('odd us and is nouns', () => {
     expect(makeSuffix('cactus', 1)).toEqual('1 cactus');
@@ -110,6 +116,27 @@ describe('When testing makeSuffix', () => {
     expect(makeSuffix('basis', 2)).toEqual('2 bases');
     expect(makeSuffix('crisis', 1)).toEqual('1 crisis');
     expect(makeSuffix('crisis', 2)).toEqual('2 crises');
+  });
+  it('checking for 0 count returns plural', () => {
+    expect(makeSuffix('cactus', 0)).toEqual('0 cactuses');
+    expect(makeSuffix('fungus', 0)).toEqual('0 funguses');
+    expect(makeSuffix('stimulus', 0)).toEqual('0 stimuluses');
+    expect(makeSuffix('syllabus', 0)).toEqual('0 syllabuses');
+    expect(makeSuffix('analysis', 0)).toEqual('0 analyses');
+    expect(makeSuffix('basis', 0)).toEqual('0 bases');
+    expect(makeSuffix('crisis', 0)).toEqual('0 crises');
+    expect(makeSuffix('day', 0)).toEqual('0 days');
+    expect(makeSuffix('week', 0)).toEqual('0 weeks');
+    expect(makeSuffix('quiz', 0)).toEqual('0 quizzes');
+    expect(makeSuffix('deer', 0)).toEqual('0 deer');
+    expect(makeSuffix('aircraft', 0)).toEqual('0 aircraft');
+    expect(makeSuffix('hero', 0)).toEqual('0 heroes');
+    expect(makeSuffix('baby', 0)).toEqual('0 babies');
+    expect(makeSuffix('man', 0)).toEqual('0 men');
+  });
+  it('returns the same casing', () => {
+    expect(makeSuffix('Foot', 1)).toEqual('1 Foot');
+    expect(makeSuffix('mAn', 1)).toEqual('1 men');
   });
 });
 

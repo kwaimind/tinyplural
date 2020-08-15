@@ -1,12 +1,10 @@
-// https://www.grammarly.com/blog/plural-nouns/
-
 import irregularNouns from './data/irregularNouns';
 import nonChangingNouns from './data/nonChangingNouns';
 
 type nounReturn = string | null;
 
 export const isIregular = (noun: string, count = 1): nounReturn => {
-  const value = count > 1 ? 'plural' : 'single';
+  const value = count === 1 ? 'single' : 'plural';
   const getNoun = irregularNouns.find((item) => item.single === noun) || {};
   return getNoun[value] || null;
 };
@@ -76,9 +74,7 @@ export const isNouns = (noun: string): nounReturn => {
   return null;
 };
 
-export const standardNouns = (noun: string): nounReturn => {
-  return `${noun}s`;
-};
+export const standardNouns = (noun: string): nounReturn => `${noun}s`;
 
 /**
  *
@@ -86,7 +82,7 @@ export const standardNouns = (noun: string): nounReturn => {
  * @param count The number of that noun, `[2]`
  * @returns A formatted string, `[2 heroes]`
  */
-const makeSuffix = (noun: string, count = 1): string => {
+const makeSuffix = (noun: string, count = 1): nounReturn => {
   const nounFns = [
     isIregular,
     isNonChanging,
@@ -101,7 +97,7 @@ const makeSuffix = (noun: string, count = 1): string => {
 
   if (count === 1) return `${count} ${noun}`;
 
-  for (let i = 0; i < nounFns.length; i++) {
+  for (let i = 0; i < nounFns.length; i += 1) {
     const callFn = nounFns[i](noun, count);
     if (callFn !== null) {
       result = `${count} ${callFn}`;
