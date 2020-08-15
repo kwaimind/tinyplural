@@ -96,6 +96,7 @@ const makeSuffix = (noun: string, count = 1): nounReturn => {
   let result!: string;
 
   if (count === 1) return `${count} ${noun}`;
+  if (count < 0) return null;
 
   for (let i = 0; i < nounFns.length; i += 1) {
     const callFn = nounFns[i](noun, count);

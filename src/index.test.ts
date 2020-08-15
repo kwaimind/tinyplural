@@ -136,7 +136,6 @@ describe('When testing makeSuffix', () => {
   });
   it('returns the same casing', () => {
     expect(makeSuffix('Foot', 1)).toEqual('1 Foot');
-    expect(makeSuffix('mAn', 1)).toEqual('1 men');
   });
 });
 
