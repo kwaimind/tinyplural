@@ -12,16 +12,20 @@ import makeSuffix, {
 import nonChangingNouns from './data/nonChangingNouns';
 import irregularNouns from './data/irregularNouns';
 
-// https://www.ef.com/wwen/english-resources/english-grammar/singular-and-plural-nouns/
+let randomCount: number;
+
+beforeAll(() => {
+  randomCount = Math.floor(Math.random() * 100) + 1;
+});
 
 describe('When testing makeSuffix', () => {
   it('returns the correct irregular noun', () => {
     expect(makeSuffix('foot', 1)).toEqual('1 foot');
-    expect(makeSuffix('foot', 2)).toEqual('2 feet');
+    expect(makeSuffix('foot', randomCount)).toEqual(`${randomCount} feet`);
   });
   it('returns the correct non-changing noun', () => {
     expect(makeSuffix('fish', 1)).toEqual('1 fish');
-    expect(makeSuffix('fish', 2)).toEqual('2 fish');
+    expect(makeSuffix('fish', randomCount)).toEqual(`${randomCount} fish`);
   });
   it('returns the correct ON noun', () => {
     expect(makeSuffix('phenomenon', 1)).toEqual('1 phenomenon');
@@ -94,6 +98,8 @@ describe('When testing makeSuffix', () => {
     expect(makeSuffix('box', 2)).toEqual('2 boxes');
     expect(makeSuffix('tax', 1)).toEqual('1 tax');
     expect(makeSuffix('tax', 2)).toEqual('2 taxes');
+    expect(makeSuffix('contributor', 2)).toEqual('2 contributors');
+    expect(makeSuffix('guide', 2)).toEqual('2 guides');
   });
   it('odd us and is nouns', () => {
     expect(makeSuffix('cactus', 1)).toEqual('1 cactus');
@@ -111,6 +117,26 @@ describe('When testing makeSuffix', () => {
     expect(makeSuffix('crisis', 1)).toEqual('1 crisis');
     expect(makeSuffix('crisis', 2)).toEqual('2 crises');
   });
+  it('checking for 0 count returns plural', () => {
+    expect(makeSuffix('cactus', 0)).toEqual('0 cactuses');
+    expect(makeSuffix('fungus', 0)).toEqual('0 funguses');
+    expect(makeSuffix('stimulus', 0)).toEqual('0 stimuluses');
+    expect(makeSuffix('syllabus', 0)).toEqual('0 syllabuses');
+    expect(makeSuffix('analysis', 0)).toEqual('0 analyses');
+    expect(makeSuffix('basis', 0)).toEqual('0 bases');
+    expect(makeSuffix('crisis', 0)).toEqual('0 crises');
+    expect(makeSuffix('day', 0)).toEqual('0 days');
+    expect(makeSuffix('week', 0)).toEqual('0 weeks');
+    expect(makeSuffix('quiz', 0)).toEqual('0 quizzes');
+    expect(makeSuffix('deer', 0)).toEqual('0 deer');
+    expect(makeSuffix('aircraft', 0)).toEqual('0 aircraft');
+    expect(makeSuffix('hero', 0)).toEqual('0 heroes');
+    expect(makeSuffix('baby', 0)).toEqual('0 babies');
+    expect(makeSuffix('man', 0)).toEqual('0 men');
+  });
+  it('returns the same casing', () => {
+    expect(makeSuffix('Foot', 1)).toEqual('1 Foot');
+  });
 });
 
 describe('When testing isIregular', () => {
@@ -125,12 +151,9 @@ describe('When testing isIregular', () => {
 
 describe('When testing otherNouns', () => {
   it('returns an the correct noun', () => {
-    expect(otherNouns('bus', 1)).toEqual('bus');
-    expect(otherNouns('bus', 2)).toEqual('buses');
-    expect(otherNouns('quiz', 1)).toEqual('quiz');
-    expect(otherNouns('quiz', 2)).toEqual('quizzes');
-    expect(otherNouns('box', 1)).toEqual('box');
-    expect(otherNouns('box', 2)).toEqual('boxes');
+    expect(otherNouns('bus')).toEqual('buses');
+    expect(otherNouns('quiz')).toEqual('quizzes');
+    expect(otherNouns('box')).toEqual('boxes');
   });
   it('returns null if no irregular noun is found', () => {
     expect(otherNouns('car')).toEqual(null);
@@ -149,16 +172,12 @@ describe('When testing isNonChanging', () => {
 
 describe('When testing endsInO', () => {
   it('returns an constant + O with es added', () => {
-    expect(endsInO('hero')).toEqual('hero');
-    expect(endsInO('hero', 2)).toEqual('heroes');
-    expect(endsInO('echo')).toEqual('echo');
-    expect(endsInO('echo', 2)).toEqual('echoes');
+    expect(endsInO('hero')).toEqual('heroes');
+    expect(endsInO('echo')).toEqual('echoes');
   });
   it('returns an vowel + O with s added', () => {
-    expect(endsInO('zoo')).toEqual('zoo');
-    expect(endsInO('zoo', 2)).toEqual('zoos');
-    expect(endsInO('stereo')).toEqual('stereo');
-    expect(endsInO('stereo', 2)).toEqual('stereos');
+    expect(endsInO('zoo')).toEqual('zoos');
+    expect(endsInO('stereo')).toEqual('stereos');
   });
   it('returns null if does not match the rule', () => {
     expect(endsInO('lion')).toEqual(null);
@@ -168,16 +187,12 @@ describe('When testing endsInO', () => {
 
 describe('When testing endsInY', () => {
   it('returns an constant + Y with es added', () => {
-    expect(endsInY('city')).toEqual('city');
-    expect(endsInY('city', 2)).toEqual('cities');
-    expect(endsInY('baby')).toEqual('baby');
-    expect(endsInY('baby', 2)).toEqual('babies');
+    expect(endsInY('city')).toEqual('cities');
+    expect(endsInY('baby')).toEqual('babies');
   });
   it('returns an vowel + Y with s added', () => {
-    expect(endsInY('day')).toEqual('day');
-    expect(endsInY('day', 2)).toEqual('days');
-    expect(endsInY('guy')).toEqual('guy');
-    expect(endsInY('guy', 2)).toEqual('guys');
+    expect(endsInY('day')).toEqual('days');
+    expect(endsInY('guy')).toEqual('guys');
   });
   it('returns null if does not match the rule', () => {
     expect(endsInY('lion')).toEqual(null);
@@ -187,16 +202,12 @@ describe('When testing endsInY', () => {
 
 describe('When testing endsInFOrFe', () => {
   it('returns a noun with f or fe removed and ves added', () => {
-    expect(endsInFOrFe('leaf')).toEqual('leaf');
-    expect(endsInFOrFe('leaf', 2)).toEqual('leaves');
-    expect(endsInFOrFe('knife')).toEqual('knife');
-    expect(endsInFOrFe('knife', 2)).toEqual('knives');
+    expect(endsInFOrFe('leaf')).toEqual('leaves');
+    expect(endsInFOrFe('knife')).toEqual('knives');
   });
   it('handles the exceptions', () => {
-    expect(endsInFOrFe('roof')).toEqual('roof');
-    expect(endsInFOrFe('roof', 2)).toEqual('roofs');
-    expect(endsInFOrFe('cliff')).toEqual('cliff');
-    expect(endsInFOrFe('cliff', 2)).toEqual('cliffs');
+    expect(endsInFOrFe('roof')).toEqual('roofs');
+    expect(endsInFOrFe('cliff')).toEqual('cliffs');
   });
   it('returns null if does not match the rule', () => {
     expect(endsInFOrFe('lion')).toEqual(null);
@@ -206,36 +217,26 @@ describe('When testing endsInFOrFe', () => {
 
 describe('When testing standardNouns', () => {
   it('returns simple noun with s', () => {
-    expect(standardNouns('car', 1)).toEqual('car');
-    expect(standardNouns('car', 2)).toEqual('cars');
-    expect(standardNouns('book', 1)).toEqual('book');
-    expect(standardNouns('book', 2)).toEqual('books');
-    expect(standardNouns('apple', 1)).toEqual('apple');
-    expect(standardNouns('apple', 2)).toEqual('apples');
+    expect(standardNouns('car')).toEqual('cars');
+    expect(standardNouns('book')).toEqual('books');
+    expect(standardNouns('apple')).toEqual('apples');
   });
 });
 
 describe('When testing usNouns', () => {
   it('returns i for nouns ending in us', () => {
-    expect(usNouns('cactus', 1)).toEqual('cactus');
-    expect(usNouns('cactus', 2)).toEqual('cacti');
-    expect(usNouns('fungus', 1)).toEqual('fungus');
-    expect(usNouns('fungus', 2)).toEqual('fungi');
-    expect(usNouns('stimulus', 1)).toEqual('stimulus');
-    expect(usNouns('stimulus', 2)).toEqual('stimuli');
-    expect(usNouns('syllabus', 1)).toEqual('syllabus');
-    expect(usNouns('syllabus', 2)).toEqual('syllabi');
+    expect(usNouns('cactus')).toEqual('cacti');
+    expect(usNouns('fungus')).toEqual('fungi');
+    expect(usNouns('stimulus')).toEqual('stimuli');
+    expect(usNouns('syllabus')).toEqual('syllabi');
   });
 });
 
 describe('When testing isNouns', () => {
   it('returns i for nouns ending in us', () => {
-    expect(isNouns('analysis', 1)).toEqual('analysis');
-    expect(isNouns('analysis', 2)).toEqual('analyses');
-    expect(isNouns('basis', 1)).toEqual('basis');
-    expect(isNouns('basis', 2)).toEqual('bases');
-    expect(isNouns('crisis', 1)).toEqual('crisis');
-    expect(isNouns('crisis', 2)).toEqual('crises');
+    expect(isNouns('analysis')).toEqual('analyses');
+    expect(isNouns('basis')).toEqual('bases');
+    expect(isNouns('crisis')).toEqual('crises');
   });
 });
 
