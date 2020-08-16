@@ -19,6 +19,12 @@ beforeAll(() => {
 });
 
 describe('When testing makeSuffix', () => {
+  it('throws error when string is not passed', () => {
+    //@ts-ignore
+    expect(() => makeSuffix()).toThrow(TypeError);
+    //@ts-ignore
+    expect(() => makeSuffix()).toThrow('expected a string');
+  });
   it('returns the correct irregular noun', () => {
     expect(makeSuffix('foot', 1)).toEqual('1 foot');
     expect(makeSuffix('foot', randomCount)).toEqual(`${randomCount} feet`);

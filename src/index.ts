@@ -1,19 +1,19 @@
 import irregularNouns from './data/irregularNouns';
 import nonChangingNouns from './data/nonChangingNouns';
 
-type nounReturn = string | null;
+type stringReturn = string | null;
 
-export const isIregular = (noun: string, count = 1): nounReturn => {
+export const isIregular = (noun: string, count = 1): stringReturn => {
   const value = count === 1 ? 'single' : 'plural';
   const getNoun = irregularNouns.find((item) => item.single === noun) || {};
   return getNoun[value] || null;
 };
 
-export const isNonChanging = (noun: string): nounReturn => {
+export const isNonChanging = (noun: string): stringReturn => {
   return nonChangingNouns.find((item) => item === noun) || null;
 };
 
-export const endsInO = (noun: string): nounReturn => {
+export const endsInO = (noun: string): stringReturn => {
   if (/[^aeiou]o$/gim.test(noun)) {
     return `${noun}es`;
   }
@@ -23,7 +23,7 @@ export const endsInO = (noun: string): nounReturn => {
   return null;
 };
 
-export const endsInY = (noun: string): nounReturn => {
+export const endsInY = (noun: string): stringReturn => {
   if (/[^aeiou]y$/gim.test(noun)) {
     return noun.replace('y', 'ies');
   }
@@ -33,7 +33,7 @@ export const endsInY = (noun: string): nounReturn => {
   return null;
 };
 
-export const endsInFOrFe = (noun: string): nounReturn => {
+export const endsInFOrFe = (noun: string): stringReturn => {
   const exceptions = ['roof', 'cliff', 'proof'];
 
   if (exceptions.indexOf(noun) !== -1) {
@@ -46,7 +46,7 @@ export const endsInFOrFe = (noun: string): nounReturn => {
   return null;
 };
 
-export const otherNouns = (noun: string): nounReturn => {
+export const otherNouns = (noun: string): stringReturn => {
   if (/z$/gim.test(noun)) {
     return `${noun}zes`;
   }
@@ -58,7 +58,7 @@ export const otherNouns = (noun: string): nounReturn => {
   return null;
 };
 
-export const usNouns = (noun: string): nounReturn => {
+export const usNouns = (noun: string): stringReturn => {
   const regex = /us$/gim;
   if (regex.test(noun)) {
     return noun.replace(regex, 'i');
@@ -66,7 +66,7 @@ export const usNouns = (noun: string): nounReturn => {
   return null;
 };
 
-export const isNouns = (noun: string): nounReturn => {
+export const isNouns = (noun: string): stringReturn => {
   const regex = /is$/gim;
   if (regex.test(noun)) {
     return noun.replace(regex, 'es');
@@ -74,7 +74,7 @@ export const isNouns = (noun: string): nounReturn => {
   return null;
 };
 
-export const standardNouns = (noun: string): nounReturn => `${noun}s`;
+export const standardNouns = (noun: string): stringReturn => `${noun}s`;
 
 /**
  *
@@ -82,7 +82,7 @@ export const standardNouns = (noun: string): nounReturn => `${noun}s`;
  * @param count The number of that noun, `[2]`
  * @returns A formatted string, `[2 heroes]`
  */
-const makeSuffix = (noun: string, count = 1): nounReturn => {
+const makeSuffix = (noun: string, count = 1): stringReturn => {
   const nounFns = [
     isIregular,
     isNonChanging,
@@ -94,6 +94,10 @@ const makeSuffix = (noun: string, count = 1): nounReturn => {
     standardNouns,
   ];
   let result!: string;
+
+  if (typeof noun !== 'string' || noun === undefined) {
+    throw new TypeError('expected a string');
+  }
 
   if (count === 1) return `${count} ${noun}`;
   if (count < 0) return null;
