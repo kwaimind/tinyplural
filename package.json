@@ -1,12 +1,11 @@
 {
-  "name": "makeSuffix",
+  "name": "makesuffix",
   "version": "1.0.0",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
   "license": "MIT",
-  "author": {
-    "name": "Daniel Reed"
-  },
+  "author": "Daniel Reed",
+  "description": "A tiny 6kb pluralizer for English nouns",
   "keywords": [
     "suffix",
     "plurals",
@@ -31,7 +30,8 @@
     "lint": "eslint src/",
     "test": "jest src/ --collectCoverage",
     "test:watch": "jest src/ --watchAll",
-    "build": "rm -rf lib && tsc"
+    "build": "rm -rf lib && tsc",
+    "prepublish": "yarn build"
   },
   "husky": {
     "hooks": {
