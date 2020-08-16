@@ -24,6 +24,10 @@ describe('When testing makeSuffix', () => {
     expect(() => makeSuffix()).toThrow(TypeError);
     //@ts-ignore
     expect(() => makeSuffix()).toThrow('expected a string');
+    //@ts-ignore
+    expect(() => makeSuffix(123)).toThrow('expected a string');
+    //@ts-ignore
+    expect(() => makeSuffix(null, 123)).toThrow('expected a string');
   });
   it('returns the correct irregular noun', () => {
     expect(makeSuffix('foot', 1)).toEqual('1 foot');
