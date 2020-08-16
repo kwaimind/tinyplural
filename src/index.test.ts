@@ -4,10 +4,10 @@ import makeSuffix, {
   endsInO,
   endsInY,
   endsInFOrFe,
-  otherNouns,
-  standardNouns,
-  usNouns,
-  isNouns,
+  schshxzNoun,
+  standardNoun,
+  usNoun,
+  isNoun,
 } from './index';
 import nonChangingNouns from './data/nonChangingNouns';
 import irregularNouns from './data/irregularNouns';
@@ -159,14 +159,14 @@ describe('When testing isIregular', () => {
   });
 });
 
-describe('When testing otherNouns', () => {
+describe('When testing schshxzNoun', () => {
   it('returns an the correct noun', () => {
-    expect(otherNouns('bus')).toEqual('buses');
-    expect(otherNouns('quiz')).toEqual('quizzes');
-    expect(otherNouns('box')).toEqual('boxes');
+    expect(schshxzNoun('bus')).toEqual('buses');
+    expect(schshxzNoun('quiz')).toEqual('quizzes');
+    expect(schshxzNoun('box')).toEqual('boxes');
   });
   it('returns null if no irregular noun is found', () => {
-    expect(otherNouns('car')).toEqual(null);
+    expect(schshxzNoun('car')).toEqual(null);
   });
 });
 
@@ -225,28 +225,28 @@ describe('When testing endsInFOrFe', () => {
   });
 });
 
-describe('When testing standardNouns', () => {
+describe('When testing standardNoun', () => {
   it('returns simple noun with s', () => {
-    expect(standardNouns('car')).toEqual('cars');
-    expect(standardNouns('book')).toEqual('books');
-    expect(standardNouns('apple')).toEqual('apples');
+    expect(standardNoun('car')).toEqual('cars');
+    expect(standardNoun('book')).toEqual('books');
+    expect(standardNoun('apple')).toEqual('apples');
   });
 });
 
-describe('When testing usNouns', () => {
+describe('When testing usNoun', () => {
   it('returns i for nouns ending in us', () => {
-    expect(usNouns('cactus')).toEqual('cacti');
-    expect(usNouns('fungus')).toEqual('fungi');
-    expect(usNouns('stimulus')).toEqual('stimuli');
-    expect(usNouns('syllabus')).toEqual('syllabi');
+    expect(usNoun('cactus')).toEqual('cacti');
+    expect(usNoun('fungus')).toEqual('fungi');
+    expect(usNoun('stimulus')).toEqual('stimuli');
+    expect(usNoun('syllabus')).toEqual('syllabi');
   });
 });
 
-describe('When testing isNouns', () => {
+describe('When testing isNoun', () => {
   it('returns i for nouns ending in us', () => {
-    expect(isNouns('analysis')).toEqual('analyses');
-    expect(isNouns('basis')).toEqual('bases');
-    expect(isNouns('crisis')).toEqual('crises');
+    expect(isNoun('analysis')).toEqual('analyses');
+    expect(isNoun('basis')).toEqual('bases');
+    expect(isNoun('crisis')).toEqual('crises');
   });
 });
 
