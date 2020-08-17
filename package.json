@@ -31,7 +31,7 @@
     "test": "jest src/ --collectCoverage",
     "test:watch": "jest src/ --watchAll",
     "build": "rm -rf lib && tsc",
-    "prepublish": "yarn build"
+    "prepublish": "yarn test && yarn build"
   },
   "husky": {
     "hooks": {
