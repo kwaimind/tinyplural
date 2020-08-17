@@ -22,6 +22,14 @@ return (
 
 It's fully written in TypeScript, with a test-suite to go with it.
 
+The library is available as an npm package. To install the package run:
+
+```
+npm install makesuffix --save
+# or with yarn
+yarn add makesuffix
+```
+
 Want to get involved! Read our [Contributors' Guide](./CONTRIBUTING.md) for details.
 
 Found a bug or a rule that doesn't work? Open a [bug report ticket](https://github.com/kwaimind/makeSuffix/issues/new/choose).
