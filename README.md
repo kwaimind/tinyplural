@@ -1,7 +1,5 @@
 # ✍ makeSuffix
 
-5df82705330a1122e81366bf0a7b3f143e38ce11
-
 > A tiny 6kb pluralizer for English nouns
 
 makeSuffix is an easy to use utility function that converts your strings into their relevant plurals dynamically. It ships at 6kb and has 0 dependencies.
@@ -9,7 +7,7 @@ makeSuffix is an easy to use utility function that converts your strings into th
 [Demo](https://codesandbox.io/s/makesuffix-demo-xkgd1?file=/src/App.js)
 
 ```javascript
-import makeSuffix from 'makeSuffix';
+import makeSuffix from 'makesuffix';
 
 const formattedDate = makeSuffix('day', 2);
 
