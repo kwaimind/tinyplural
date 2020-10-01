@@ -5,8 +5,8 @@ type suffixReturn = string | null;
 
 export const isIregular = (noun: string, count = 1): suffixReturn => {
   const value = count === 1 ? 'single' : 'plural';
-  const getNoun = irregularNouns.find((item) => item.single === noun) || {};
-  return getNoun[value] || null;
+  const getNoun = irregularNouns.find((item) => item.single === noun);
+  return getNoun?.[value] || null;
 };
 
 export const isNonChanging = (noun: string): suffixReturn => {
@@ -83,6 +83,14 @@ export const standardNoun = (noun: string): suffixReturn => `${noun}s`;
  * @returns A formatted string, `[2 heroes]`
  */
 const makeSuffix = (noun: string, count = 1): suffixReturn => {
+  if (typeof noun !== 'string' || noun === undefined) {
+    throw new TypeError('expected a string');
+  }
+
+  if (count === 1) return `${count} ${noun}`;
+  if (count < 0) return null;
+
+
   const nounFns = [
     isIregular,
     isNonChanging,
@@ -93,24 +101,16 @@ const makeSuffix = (noun: string, count = 1): suffixReturn => {
     schshxzNoun,
     standardNoun,
   ];
-  let result!: string;
 
-  if (typeof noun !== 'string' || noun === undefined) {
-    throw new TypeError('expected a string');
-  }
-
-  if (count === 1) return `${count} ${noun}`;
-  if (count < 0) return null;
-
-  for (let i = 0; i < nounFns.length; i += 1) {
-    const callFn = nounFns[i](noun, count);
+  for (const fn of nounFns) {
+    const callFn = fn(noun, count);
     if (callFn !== null) {
-      result = `${count} ${callFn}`;
-      break;
+      const result = `${count} ${callFn}`;
+      return result;
     }
   }
 
-  return result;
+  return null;
 };
 
 export default makeSuffix;

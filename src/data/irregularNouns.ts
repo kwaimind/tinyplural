@@ -1,4 +1,4 @@
-export interface nounObject {
+export interface Noun {
   single?: string;
   plural?: string;
 }
@@ -6,7 +6,7 @@ export interface nounObject {
 /**
  * An array of irregular nouns that follow no specific rules
  */
-const irregularNouns: Array<nounObject> = [
+const irregularNouns: Array<Noun> = [
   {
     single: 'child',
     plural: 'children',
