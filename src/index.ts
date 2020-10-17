@@ -76,7 +76,7 @@ export const isNoun = (noun: string): SuffixReturn => {
   return null;
 };
 
-export const standardNoun = (noun: string): SuffixReturn => `${noun}s`;
+export const standardNoun = (noun: string): string => `${noun}s`;
 
 /**
  *
