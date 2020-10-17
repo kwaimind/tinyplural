@@ -160,7 +160,7 @@ describe('When testing isIregular', () => {
 });
 
 describe('When testing schshxzNoun', () => {
-  it('returns an the correct noun', () => {
+  it('returns the correct noun', () => {
     expect(schshxzNoun('bus')).toEqual('buses');
     expect(schshxzNoun('quiz')).toEqual('quizzes');
     expect(schshxzNoun('box')).toEqual('boxes');

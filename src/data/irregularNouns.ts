@@ -1,12 +1,12 @@
-export interface nounObject {
-  single?: string;
-  plural?: string;
+export interface NounObject {
+  single: string;
+  plural: string;
 }
 
 /**
  * An array of irregular nouns that follow no specific rules
  */
-const irregularNouns: Array<nounObject> = [
+const irregularNouns: Array<NounObject> = [
   {
     single: 'child',
     plural: 'children',
