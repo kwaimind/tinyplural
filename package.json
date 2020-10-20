@@ -29,8 +29,7 @@
     "dev": "tsc -w",
     "lint": "eslint src/",
     "test": "jest src/ --collectCoverage",
-    "test-watch": "jest src/ --watch",
-    "test:watch": "jest src/ --watchAll",
+    "test:watch": "jest src/ --watch",
     "build": "rm -rf lib && tsc",
     "prepublish": "yarn test && yarn build"
   },
