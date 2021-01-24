@@ -1,5 +1,5 @@
 {
-  "version": "0.1.0",
+  "version": "1.1.0",
   "license": "MIT",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
@@ -37,11 +37,11 @@
   "size-limit": [
     {
       "path": "dist/makesuffix.cjs.production.min.js",
-      "limit": "10 KB"
+      "limit": "5 KB"
     },
     {
       "path": "dist/makesuffix.esm.js",
-      "limit": "10 KB"
+      "limit": "5 KB"
     }
   ],
   "dependencies": {
