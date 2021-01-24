@@ -1,8 +1,8 @@
 # ✍ makeSuffix
 
-> A tiny 6kb pluralizer for English nouns
+> A tiny pluralizer for English nouns
 
-makeSuffix is an easy to use utility function that converts your strings into their relevant plurals dynamically. It ships at 6kb and has 0 dependencies.
+makeSuffix is an easy to use utility function that converts your strings into their relevant plurals dynamically. Comes with 0 dependencies.
 
 [Demo](https://codesandbox.io/s/makesuffix-demo-xkgd1?file=/src/App.js)
 
