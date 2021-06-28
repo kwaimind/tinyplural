@@ -3,55 +3,12 @@ import standardNoun from './standardNoun';
 import isNonChanging from './isNonChanging';
 import endsInIs from './endsInIs';
 import endsInUs from './endsInUs';
-
-import { SuffixReturn } from './types';
+import endsInFOrFe from './endsInFOrFe';
+import endsInY from './endsInY';
+import endsInO from './endsInO';
+import schshxzNoun from './schshxzNoun';
 
 const cache = new Map();
-
-export const endsInO = (noun: string): SuffixReturn => {
-  if (/[^aeiou]o$/gim.test(noun)) {
-    return `${noun}es`;
-  }
-  if (/[aeiou]o$/gim.test(noun)) {
-    return `${noun}s`;
-  }
-  return null;
-};
-
-export const endsInY = (noun: string): SuffixReturn => {
-  if (/[^aeiou]y$/gim.test(noun)) {
-    return noun.replace('y', 'ies');
-  }
-  if (/[aeiou]y$/gim.test(noun)) {
-    return `${noun}s`;
-  }
-  return null;
-};
-
-export const endsInFOrFe = (noun: string): SuffixReturn => {
-  const exceptions = ['roof', 'cliff', 'proof'];
-
-  if (exceptions.includes(noun)) {
-    return `${noun}s`;
-  }
-
-  if (/(f|fe)$/gim.test(noun)) {
-    return noun.replace(/(f|fe)$/, 'ves');
-  }
-  return null;
-};
-
-export const schshxzNoun = (noun: string): SuffixReturn => {
-  if (/z$/gim.test(noun)) {
-    return `${noun}zes`;
-  }
-
-  if (/(s|ch|sh|x|z)$/gim.test(noun)) {
-    return `${noun}es`;
-  }
-
-  return null;
-};
 
 /**
  *

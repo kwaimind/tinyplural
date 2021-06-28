@@ -1,16 +1,16 @@
-import makeSuffix, {
-  endsInO,
-  endsInY,
-  endsInFOrFe,
-  schshxzNoun,
-} from '../src/index';
-import nonChangingNouns from '../src/data/nonChangingNouns';
-import irregularNouns from '../src/data/irregularNouns';
+import makeSuffix from '../src/index';
 import isIregular from '../src/isIregular';
 import standardNoun from '../src/standardNoun';
 import isNonChanging from '../src/isNonChanging';
 import endsInIs from '../src/endsInIs';
 import endsInUs from '../src/endsInUs';
+import endsInFOrFe from '../src/endsInFOrFe';
+import endsInY from '../src/endsInY';
+import endsInO from '../src/endsInO';
+import schshxzNoun from '../src/schshxzNoun';
+
+import nonChangingNouns from '../src/data/nonChangingNouns';
+import irregularNouns from '../src/data/irregularNouns';
 
 let randomCount: number;
 
