@@ -47,8 +47,7 @@
   ],
   "dependencies": {},
   "resolutions": {
-    "tsdx/**/node-notifier": "10.0.0",
-    "tsdx/**/glob-parent": "5.1.2"
+    "tsdx/**/node-notifier": "10.0.0"
   },
   "devDependencies": {
     "@size-limit/preset-small-lib": "^5.0.1",
