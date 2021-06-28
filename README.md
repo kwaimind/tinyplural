@@ -1,6 +1,6 @@
 # ✍ makeSuffix
 
-[![alt text](https://img.shields.io/bundlephobia/minzip/makesuffix?style=flat-square)](https://bundlephobia.com/package/makesuffix) [![Run Jest Tests](https://github.com/kwaimind/makeSuffix/actions/workflows/main.yml/badge.svg)](https://github.com/kwaimind/makeSuffix/actions/workflows/main.yml)
+[![bundlephobia](https://img.shields.io/bundlephobia/minzip/makesuffix?style=flat-square)](https://bundlephobia.com/package/makesuffix) ![npm version](https://img.shields.io/npm/v/makesuffix?style=flat-square) [![Run Jest Tests](https://github.com/kwaimind/makeSuffix/actions/workflows/main.yml/badge.svg)](https://github.com/kwaimind/makeSuffix/actions/workflows/main.yml)
 
 > A tiny pluralizer for English nouns
 
