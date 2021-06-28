@@ -14,6 +14,7 @@
     "start": "tsdx watch",
     "build": "tsdx test && tsdx build",
     "test": "tsdx test",
+    "test:watch": "tsdx test --watch",
     "lint": "tsdx lint",
     "prepare": "tsdx build",
     "size": "size-limit",
@@ -44,12 +45,11 @@
       "limit": "5 KB"
     }
   ],
-  "dependencies": {
-    "global": "^4.4.0",
-    "size-limit": "^4.9.1",
-    "tsdx": "^0.14.1"
-  },
+  "dependencies": {},
   "devDependencies": {
-    "@size-limit/preset-small-lib": "^4.9.1"
+    "@size-limit/preset-small-lib": "^4.12.0",
+    "global": "^4.4.0",
+    "size-limit": "^4.12.0",
+    "tsdx": "^0.14.1"
   }
 }

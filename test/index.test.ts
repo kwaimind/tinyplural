@@ -33,6 +33,13 @@ describe('When testing makeSuffix', () => {
     expect(makeSuffix('foot', 1)).toEqual('1 foot');
     expect(makeSuffix('foot', randomCount)).toEqual(`${randomCount} feet`);
   });
+  it('returns the cached result', () => {
+    const resultOne = makeSuffix('foot', 2);
+    const resultTwo = makeSuffix('foot', 2);
+    expect(resultOne).toEqual('2 feet');
+    expect(resultTwo).toEqual('2 feet');
+    expect(resultOne).toBe(resultTwo);
+  });
   it('returns the correct non-changing noun', () => {
     expect(makeSuffix('fish', 1)).toEqual('1 fish');
     expect(makeSuffix('fish', randomCount)).toEqual(`${randomCount} fish`);

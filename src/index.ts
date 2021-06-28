@@ -3,6 +3,8 @@ import nonChangingNouns from './data/nonChangingNouns';
 
 type SuffixReturn = string | null;
 
+const cache = new Map();
+
 export const isIregular = (noun: string, count = 1): SuffixReturn => {
   const kind: keyof NounObject = count === 1 ? 'single' : 'plural';
   const nounObject = irregularNouns.find(item => item.single === noun);
@@ -97,17 +99,25 @@ const makeSuffix = (noun: string, count = 1): string => {
     throw new TypeError('expected a string');
   }
 
+  const cachedResult = cache.get(`${count} ${noun}`);
+
+  if (cachedResult) {
+    return cachedResult;
+  }
+
   if (count === 1) return `${count} ${noun}`;
-  //if (count < 0) return null;
 
   for (let i = 0; i < nounFns.length; i += 1) {
     const nounFnResult = nounFns[i](noun, count);
     if (nounFnResult !== null) {
+      cache.set(`${count} ${noun}`, `${count} ${nounFnResult}`);
       return `${count} ${nounFnResult}`;
     }
   }
 
-  return `${count} ${standardNoun(noun)}`;
+  const standard = standardNoun(noun);
+  cache.set(`${count} ${noun}`, `${count} ${standard}`);
+  return `${count} ${standard}`;
 };
 
 export default makeSuffix;
