@@ -1,16 +1,16 @@
 import makeSuffix, {
-  isIregular,
-  isNonChanging,
   endsInO,
   endsInY,
   endsInFOrFe,
   schshxzNoun,
-  standardNoun,
-  usNoun,
-  isNoun,
 } from '../src/index';
 import nonChangingNouns from '../src/data/nonChangingNouns';
 import irregularNouns from '../src/data/irregularNouns';
+import isIregular from '../src/isIregular';
+import standardNoun from '../src/standardNoun';
+import isNonChanging from '../src/isNonChanging';
+import endsInIs from '../src/endsInIs';
+import endsInUs from '../src/endsInUs';
 
 let randomCount: number;
 
@@ -258,20 +258,20 @@ describe('When testing standardNoun', () => {
   });
 });
 
-describe('When testing usNoun', () => {
+describe('When testing endsInUs', () => {
   it('returns i for nouns ending in us', () => {
-    expect(usNoun('cactus')).toEqual('cacti');
-    expect(usNoun('fungus')).toEqual('fungi');
-    expect(usNoun('stimulus')).toEqual('stimuli');
-    expect(usNoun('syllabus')).toEqual('syllabi');
+    expect(endsInUs('cactus')).toEqual('cacti');
+    expect(endsInUs('fungus')).toEqual('fungi');
+    expect(endsInUs('stimulus')).toEqual('stimuli');
+    expect(endsInUs('syllabus')).toEqual('syllabi');
   });
 });
 
-describe('When testing isNoun', () => {
+describe('When testing endsInIs', () => {
   it('returns i for nouns ending in us', () => {
-    expect(isNoun('analysis')).toEqual('analyses');
-    expect(isNoun('basis')).toEqual('bases');
-    expect(isNoun('crisis')).toEqual('crises');
+    expect(endsInIs('analysis')).toEqual('analyses');
+    expect(endsInIs('basis')).toEqual('bases');
+    expect(endsInIs('crisis')).toEqual('crises');
   });
 });
 

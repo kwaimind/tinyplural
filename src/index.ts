@@ -1,17 +1,12 @@
-import irregularNouns, { NounObject } from './data/irregularNouns';
+import isIregular from './isIregular';
 import standardNoun from './standardNoun';
 import isNonChanging from './isNonChanging';
 import endsInIs from './endsInIs';
+import endsInUs from './endsInUs';
 
 import { SuffixReturn } from './types';
 
 const cache = new Map();
-
-export const isIregular = (noun: string, count = 1): SuffixReturn => {
-  const kind: keyof NounObject = count === 1 ? 'single' : 'plural';
-  const nounObject = irregularNouns.find(item => item.single === noun);
-  return nounObject ? nounObject[kind] : null;
-};
 
 export const endsInO = (noun: string): SuffixReturn => {
   if (/[^aeiou]o$/gim.test(noun)) {
@@ -36,7 +31,7 @@ export const endsInY = (noun: string): SuffixReturn => {
 export const endsInFOrFe = (noun: string): SuffixReturn => {
   const exceptions = ['roof', 'cliff', 'proof'];
 
-  if (exceptions.indexOf(noun) !== -1) {
+  if (exceptions.includes(noun)) {
     return `${noun}s`;
   }
 
@@ -58,14 +53,6 @@ export const schshxzNoun = (noun: string): SuffixReturn => {
   return null;
 };
 
-export const usNoun = (noun: string): SuffixReturn => {
-  const regex = /us$/gim;
-  if (regex.test(noun)) {
-    return noun.replace(regex, 'i');
-  }
-  return null;
-};
-
 /**
  *
  * @param noun The singular noun `[hero]`
@@ -81,6 +68,7 @@ const makeSuffix = (noun: string, count = 1): string => {
     endsInFOrFe,
     endsInIs,
     schshxzNoun,
+    endsInUs,
   ];
 
   if (typeof noun !== 'string') {
