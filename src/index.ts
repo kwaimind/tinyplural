@@ -8,6 +8,17 @@ import endsInY from './endsInY';
 import endsInO from './endsInO';
 import schshxzNoun from './schshxzNoun';
 
+const nounFns = [
+  isIregular,
+  isNonChanging,
+  endsInO,
+  endsInY,
+  endsInFOrFe,
+  endsInIs,
+  schshxzNoun,
+  endsInUs,
+];
+
 const cache = new Map();
 
 /**
@@ -17,17 +28,6 @@ const cache = new Map();
  * @returns {string} A formatted string, `[2 heroes]`
  */
 const makeSuffix = (noun: string, count = 1): string => {
-  const nounFns = [
-    isIregular,
-    isNonChanging,
-    endsInO,
-    endsInY,
-    endsInFOrFe,
-    endsInIs,
-    schshxzNoun,
-    endsInUs,
-  ];
-
   if (typeof noun !== 'string') {
     throw new TypeError('expected a string');
   }

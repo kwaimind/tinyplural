@@ -1,8 +1,8 @@
 import { SuffixReturn } from './types';
 
-const endsInFOrFe = (noun: string): SuffixReturn => {
-  const exceptions = ['roof', 'cliff', 'proof'];
+const exceptions = ['roof', 'cliff', 'proof'];
 
+const endsInFOrFe = (noun: string): SuffixReturn => {
   if (exceptions.includes(noun)) {
     return `${noun}s`;
   }

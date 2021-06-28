@@ -1,7 +1,7 @@
 import { SuffixReturn } from './types';
 
 const schshxzNoun = (noun: string): SuffixReturn => {
-  if (/z$/gim.test(noun)) {
+  if (noun.slice(-1) === 'z') {
     return `${noun}zes`;
   }
 
