@@ -1,5 +1,7 @@
 # ✍ makeSuffix
 
+[![alt text](https://img.shields.io/bundlephobia/minzip/makesuffix?style=flat-square)](https://bundlephobia.com/package/makesuffix)
+
 > A tiny pluralizer for English nouns
 
 makeSuffix is an easy to use utility function that converts your strings into their relevant plurals dynamically. Comes with 0 dependencies.
