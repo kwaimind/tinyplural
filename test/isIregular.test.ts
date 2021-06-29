@@ -1,4 +1,13 @@
 import makeSuffix from '../src/index';
+import isIregular from '../src/isIregular';
+import standardNoun from '../src/standardNoun';
+import isNonChanging from '../src/isNonChanging';
+import endsInIs from '../src/endsInIs';
+import endsInUs from '../src/endsInUs';
+import endsInFOrFe from '../src/endsInFOrFe';
+import endsInY from '../src/endsInY';
+import endsInO from '../src/endsInO';
+import schshxzNoun from '../src/schshxzNoun';
 
 import nonChangingNouns from '../src/data/nonChangingNouns';
 import irregularNouns from '../src/data/irregularNouns';
@@ -162,6 +171,107 @@ describe('When testing makeSuffix', () => {
   });
   it('returns the same casing', () => {
     expect(makeSuffix('Foot', 1)).toEqual('1 Foot');
+  });
+});
+
+describe('When testing isIregular', () => {
+  it('returns an irregular noun', () => {
+    expect(isIregular('foot', 1)).toEqual('foot');
+    expect(isIregular('man', 2)).toEqual('men');
+  });
+  it('returns null if no irregular noun is found', () => {
+    expect(isIregular('footz', 1)).toEqual(null);
+  });
+});
+
+describe('When testing schshxzNoun', () => {
+  it('returns the correct noun', () => {
+    expect(schshxzNoun('bus')).toEqual('buses');
+    expect(schshxzNoun('quiz')).toEqual('quizzes');
+    expect(schshxzNoun('box')).toEqual('boxes');
+  });
+  it('returns null if no irregular noun is found', () => {
+    expect(schshxzNoun('car')).toEqual(null);
+  });
+});
+
+describe('When testing isNonChanging', () => {
+  it('returns an non-changing noun', () => {
+    expect(isNonChanging('fish')).toEqual('fish');
+    expect(isNonChanging('deer')).toEqual('deer');
+  });
+  it('returns null if no non changing noun is found', () => {
+    expect(isNonChanging('lion')).toEqual(null);
+  });
+});
+
+describe('When testing endsInO', () => {
+  it('returns an constant + O with es added', () => {
+    expect(endsInO('hero')).toEqual('heroes');
+    expect(endsInO('echo')).toEqual('echoes');
+  });
+  it('returns an vowel + O with s added', () => {
+    expect(endsInO('zoo')).toEqual('zoos');
+    expect(endsInO('stereo')).toEqual('stereos');
+  });
+  it('returns null if does not match the rule', () => {
+    expect(endsInO('lion')).toEqual(null);
+    expect(endsInO('aircraft')).toEqual(null);
+  });
+});
+
+describe('When testing endsInY', () => {
+  it('returns an constant + Y with es added', () => {
+    expect(endsInY('city')).toEqual('cities');
+    expect(endsInY('baby')).toEqual('babies');
+  });
+  it('returns an vowel + Y with s added', () => {
+    expect(endsInY('day')).toEqual('days');
+    expect(endsInY('guy')).toEqual('guys');
+  });
+  it('returns null if does not match the rule', () => {
+    expect(endsInY('lion')).toEqual(null);
+    expect(endsInY('aircraft')).toEqual(null);
+  });
+});
+
+describe('When testing endsInFOrFe', () => {
+  it('returns a noun with f or fe removed and ves added', () => {
+    expect(endsInFOrFe('leaf')).toEqual('leaves');
+    expect(endsInFOrFe('knife')).toEqual('knives');
+  });
+  it('handles the exceptions', () => {
+    expect(endsInFOrFe('roof')).toEqual('roofs');
+    expect(endsInFOrFe('cliff')).toEqual('cliffs');
+  });
+  it('returns null if does not match the rule', () => {
+    expect(endsInFOrFe('lion')).toEqual(null);
+    expect(endsInFOrFe('baby')).toEqual(null);
+  });
+});
+
+describe('When testing standardNoun', () => {
+  it('returns simple noun with s', () => {
+    expect(standardNoun('car')).toEqual('cars');
+    expect(standardNoun('book')).toEqual('books');
+    expect(standardNoun('apple')).toEqual('apples');
+  });
+});
+
+describe('When testing endsInUs', () => {
+  it('returns i for nouns ending in us', () => {
+    expect(endsInUs('cactus')).toEqual('cacti');
+    expect(endsInUs('fungus')).toEqual('fungi');
+    expect(endsInUs('stimulus')).toEqual('stimuli');
+    expect(endsInUs('syllabus')).toEqual('syllabi');
+  });
+});
+
+describe('When testing endsInIs', () => {
+  it('returns i for nouns ending in us', () => {
+    expect(endsInIs('analysis')).toEqual('analyses');
+    expect(endsInIs('basis')).toEqual('bases');
+    expect(endsInIs('crisis')).toEqual('crises');
   });
 });
 
