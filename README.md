@@ -1,10 +1,10 @@
-# ✍ makeSuffix
+# ✍ tiny-plural
 
 [![bundlephobia](https://img.shields.io/bundlephobia/minzip/makesuffix?style=flat-square)](https://bundlephobia.com/package/makesuffix) ![npm version](https://img.shields.io/npm/v/makesuffix?style=flat-square) [![Run Jest Tests](https://github.com/kwaimind/makeSuffix/actions/workflows/main.yml/badge.svg)](https://github.com/kwaimind/makeSuffix/actions/workflows/main.yml)
 
 > A tiny pluralizer for English nouns
 
-makeSuffix is an easy to use utility function that converts your strings into their relevant plurals dynamically. Comes with 0 dependencies.
+tiny-plural is an easy to use utility function that converts your strings into their relevant plurals dynamically. Comes with 0 dependencies.
 
 [Demo](https://codesandbox.io/s/makesuffix-demo-xkgd1?file=/src/App.js)
 
