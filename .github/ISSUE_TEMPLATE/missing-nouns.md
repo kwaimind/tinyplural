@@ -10,4 +10,4 @@ The following noun(s) do not work as expected
 
 Singular noun:
 Expected result:
-The function I'm running (copy and paste the makeSuffix function call here):
+The function I'm running (copy and paste the tinyplural function call here):

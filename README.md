@@ -1,17 +1,17 @@
-# ✍ tiny-plural
+# ✍ tinyplural
 
 [![bundlephobia](https://img.shields.io/bundlephobia/minzip/makesuffix?style=flat-square)](https://bundlephobia.com/package/makesuffix) ![npm version](https://img.shields.io/npm/v/makesuffix?style=flat-square) [![Run Jest Tests](https://github.com/kwaimind/makeSuffix/actions/workflows/main.yml/badge.svg)](https://github.com/kwaimind/makeSuffix/actions/workflows/main.yml)
 
 > A tiny pluralizer for English nouns
 
-tiny-plural is an easy to use utility function that converts your strings into their relevant plurals dynamically. Comes with 0 dependencies.
+tinyplural is an easy to use utility function that converts your strings into their relevant plurals dynamically. Comes with 0 dependencies.
 
 [Demo](https://codesandbox.io/s/makesuffix-demo-xkgd1?file=/src/App.js)
 
 ```javascript
-import makeSuffix from 'makesuffix';
+import tinyplural from 'tinyplural';
 
-const formattedDate = makeSuffix('day', 2);
+const formattedDate = tinyplural('day', 2);
 
 return (
   <>
@@ -27,20 +27,20 @@ It's fully written in TypeScript, with a test-suite to go with it.
 The library is available as an npm package. To install the package run:
 
 ```
-npm install makesuffix --save
+npm install tinyplural --save
 # or with yarn
-yarn add makesuffix
+yarn add tinyplural
 ```
 
 Want to get involved! Read our [Contributors' Guide](./CONTRIBUTING.md) for details.
 
-Found a bug or a rule that doesn't work? Open a [bug report ticket](https://github.com/kwaimind/makeSuffix/issues/new/choose).
+Found a bug or a rule that doesn't work? Open a [bug report ticket](https://github.com/kwaimind/tinyplural/issues/new/choose).
 
 Got a feature to add? Fork the repo, add your changes, and make a pull request.
 
 ### Info
 
-Say you need to present a promocode that ends in a number of days. Using makeSuffix, you can just give the singular noun and the value and it will return the correct plural version.
+Say you need to present a promocode that ends in a number of days. Using tinyplural, you can just give the singular noun and the value and it will return the correct plural version.
 
 | Noun  | Plural |
 | ----- | ------ |

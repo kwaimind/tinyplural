@@ -27,7 +27,7 @@ const cache = new Map();
  * @param count The count of that noun, `[2]`
  * @returns {string} A formatted string, `[2 heroes]`
  */
-const makeSuffix = (noun: string, count = 1): string => {
+const tinyplural = (noun: string, count = 1): string => {
   if (typeof noun !== 'string') {
     throw new TypeError('expected a string');
   }
@@ -53,4 +53,4 @@ const makeSuffix = (noun: string, count = 1): string => {
   return `${count} ${standard}`;
 };
 
-export default makeSuffix;
+export default tinyplural;
