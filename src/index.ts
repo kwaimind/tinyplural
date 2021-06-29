@@ -18,22 +18,7 @@ const nounFns = [
   schshxzNoun,
   endsInUs,
 ];
-/* 
-const functions = [
-  isIregular,
-  isNonChanging,
-  endsInO,
-  endsInY,
-  endsInFOrFe,
-  {
-    action: endsInIs,
-    findKey: 'is',
-    endKey: 'es',
-  },
-  schshxzNoun,
-  endsInUs,
-];
- */
+
 const cache = new Map();
 
 /**
