@@ -1,7 +1,4 @@
-export interface NounObject {
-  single: string;
-  plural: string;
-}
+import { NounObject } from '../types';
 
 /**
  * An array of irregular nouns that follow no specific rules

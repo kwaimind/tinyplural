@@ -1,14 +1,5 @@
-import makeSuffix, {
-  isIregular,
-  isNonChanging,
-  endsInO,
-  endsInY,
-  endsInFOrFe,
-  schshxzNoun,
-  standardNoun,
-  usNoun,
-  isNoun,
-} from '../src/index';
+import makeSuffix from '../src/index';
+
 import nonChangingNouns from '../src/data/nonChangingNouns';
 import irregularNouns from '../src/data/irregularNouns';
 
@@ -171,107 +162,6 @@ describe('When testing makeSuffix', () => {
   });
   it('returns the same casing', () => {
     expect(makeSuffix('Foot', 1)).toEqual('1 Foot');
-  });
-});
-
-describe('When testing isIregular', () => {
-  it('returns an irregular noun', () => {
-    expect(isIregular('foot', 1)).toEqual('foot');
-    expect(isIregular('man', 2)).toEqual('men');
-  });
-  it('returns null if no irregular noun is found', () => {
-    expect(isIregular('footz', 1)).toEqual(null);
-  });
-});
-
-describe('When testing schshxzNoun', () => {
-  it('returns the correct noun', () => {
-    expect(schshxzNoun('bus')).toEqual('buses');
-    expect(schshxzNoun('quiz')).toEqual('quizzes');
-    expect(schshxzNoun('box')).toEqual('boxes');
-  });
-  it('returns null if no irregular noun is found', () => {
-    expect(schshxzNoun('car')).toEqual(null);
-  });
-});
-
-describe('When testing isNonChanging', () => {
-  it('returns an non-changing noun', () => {
-    expect(isNonChanging('fish')).toEqual('fish');
-    expect(isNonChanging('deer')).toEqual('deer');
-  });
-  it('returns null if no non changing noun is found', () => {
-    expect(isNonChanging('lion')).toEqual(null);
-  });
-});
-
-describe('When testing endsInO', () => {
-  it('returns an constant + O with es added', () => {
-    expect(endsInO('hero')).toEqual('heroes');
-    expect(endsInO('echo')).toEqual('echoes');
-  });
-  it('returns an vowel + O with s added', () => {
-    expect(endsInO('zoo')).toEqual('zoos');
-    expect(endsInO('stereo')).toEqual('stereos');
-  });
-  it('returns null if does not match the rule', () => {
-    expect(endsInO('lion')).toEqual(null);
-    expect(endsInO('aircraft')).toEqual(null);
-  });
-});
-
-describe('When testing endsInY', () => {
-  it('returns an constant + Y with es added', () => {
-    expect(endsInY('city')).toEqual('cities');
-    expect(endsInY('baby')).toEqual('babies');
-  });
-  it('returns an vowel + Y with s added', () => {
-    expect(endsInY('day')).toEqual('days');
-    expect(endsInY('guy')).toEqual('guys');
-  });
-  it('returns null if does not match the rule', () => {
-    expect(endsInY('lion')).toEqual(null);
-    expect(endsInY('aircraft')).toEqual(null);
-  });
-});
-
-describe('When testing endsInFOrFe', () => {
-  it('returns a noun with f or fe removed and ves added', () => {
-    expect(endsInFOrFe('leaf')).toEqual('leaves');
-    expect(endsInFOrFe('knife')).toEqual('knives');
-  });
-  it('handles the exceptions', () => {
-    expect(endsInFOrFe('roof')).toEqual('roofs');
-    expect(endsInFOrFe('cliff')).toEqual('cliffs');
-  });
-  it('returns null if does not match the rule', () => {
-    expect(endsInFOrFe('lion')).toEqual(null);
-    expect(endsInFOrFe('baby')).toEqual(null);
-  });
-});
-
-describe('When testing standardNoun', () => {
-  it('returns simple noun with s', () => {
-    expect(standardNoun('car')).toEqual('cars');
-    expect(standardNoun('book')).toEqual('books');
-    expect(standardNoun('apple')).toEqual('apples');
-  });
-});
-
-describe('When testing usNoun', () => {
-  it('returns i for nouns ending in us', () => {
-    expect(usNoun('cactus')).toEqual('cacti');
-    expect(usNoun('fungus')).toEqual('fungi');
-    expect(usNoun('stimulus')).toEqual('stimuli');
-    expect(usNoun('syllabus')).toEqual('syllabi');
-  });
-});
-
-describe('When testing isNoun', () => {
-  it('returns i for nouns ending in us', () => {
-    expect(isNoun('analysis')).toEqual('analyses');
-    expect(isNoun('basis')).toEqual('bases');
-    expect(isNoun('crisis')).toEqual('crises');
   });
 });
 
