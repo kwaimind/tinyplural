@@ -1,12 +1,12 @@
 # ✍ tinyplural
 
-[![bundlephobia](https://img.shields.io/bundlephobia/minzip/makesuffix?style=flat-square)](https://bundlephobia.com/package/makesuffix) ![npm version](https://img.shields.io/npm/v/makesuffix?style=flat-square) [![Run Jest Tests](https://github.com/kwaimind/makeSuffix/actions/workflows/main.yml/badge.svg)](https://github.com/kwaimind/makeSuffix/actions/workflows/main.yml)
+[![bundlephobia](https://img.shields.io/bundlephobia/minzip/tinyplural?style=flat-square)](https://bundlephobia.com/package/tinyplural) ![npm version](https://img.shields.io/npm/v/tinyplural?style=flat-square) [![Run Jest Tests](https://github.com/kwaimind/tinyplural/actions/workflows/main.yml/badge.svg)](https://github.com/kwaimind/tinyplural/actions/workflows/main.yml)
 
 > A tiny pluralizer for English nouns
 
 tinyplural is an easy to use utility function that converts your strings into their relevant plurals dynamically. Comes with 0 dependencies.
 
-[Demo](https://codesandbox.io/s/makesuffix-demo-xkgd1?file=/src/App.js)
+[Demo](https://xkgd1.csb.app/)
 
 ```javascript
 import tinyplural from 'tinyplural';
