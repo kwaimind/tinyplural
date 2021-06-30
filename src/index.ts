@@ -1,22 +1,33 @@
 import isIregular from './isIregular';
 import standardNoun from './standardNoun';
 import isNonChanging from './isNonChanging';
-import endsInIs from './endsInIs';
-import endsInUs from './endsInUs';
+//import endsInIs from './endsInIs';
+//import endsInUs from './endsInUs';
 import endsInFOrFe from './endsInFOrFe';
 import endsInY from './endsInY';
 import endsInO from './endsInO';
 import schshxzNoun from './schshxzNoun';
+import findAndReplace from './findAndReplace';
 
-const nounFns = [
+import { FunctionWithOptions, SimpleFunction } from './types';
+
+const functions: (FunctionWithOptions | SimpleFunction)[] = [
   isIregular,
   isNonChanging,
   endsInO,
   endsInY,
   endsInFOrFe,
-  endsInIs,
+  {
+    action: findAndReplace,
+    findKey: 'is',
+    endKey: 'es',
+  },
   schshxzNoun,
-  endsInUs,
+  {
+    action: findAndReplace,
+    findKey: 'is',
+    endKey: 'i',
+  },
 ];
 
 const cache = new Map();
@@ -40,11 +51,18 @@ const tinyplural = (noun: string, count = 1): string => {
 
   if (count === 1) return `${count} ${noun}`;
 
-  for (let i = 0; i < nounFns.length; i += 1) {
-    const nounFnResult = nounFns[i](noun, count);
-    if (nounFnResult !== null) {
-      cache.set(`${count} ${noun}`, `${count} ${nounFnResult}`);
-      return `${count} ${nounFnResult}`;
+  for (let i = 0; i < functions.length; i += 1) {
+    let result;
+    if (typeof functions[i] === 'function') {
+      const func = functions[i] as SimpleFunction;
+      result = func(noun, count);
+    } else {
+      const { action, findKey, endKey } = functions[i] as FunctionWithOptions;
+      result = action(noun, findKey, endKey);
+    }
+    if (result !== null) {
+      cache.set(`${count} ${noun}`, `${count} ${result}`);
+      return `${count} ${result}`;
     }
   }
 
