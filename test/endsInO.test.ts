@@ -1,16 +1,16 @@
-import endsInO from '../src/endsInO';
+import matchesRegex from '../src/matchesRegex';
 
-describe('When testing endsInO', () => {
+describe('When testing nouns ending in O', () => {
   it('returns an constant + O with es added', () => {
-    expect(endsInO('hero')).toEqual('heroes');
-    expect(endsInO('echo')).toEqual('echoes');
+    expect(matchesRegex('hero', '[^aeiou]o$', 'es')).toEqual('heroes');
+    expect(matchesRegex('echo', '[^aeiou]o$', 'es')).toEqual('echoes');
   });
   it('returns an vowel + O with s added', () => {
-    expect(endsInO('zoo')).toEqual('zoos');
-    expect(endsInO('stereo')).toEqual('stereos');
+    expect(matchesRegex('zoo', '[aeiou]o$', 's')).toEqual('zoos');
+    expect(matchesRegex('stereo', '[aeiou]o$', 's')).toEqual('stereos');
   });
   it('returns null if does not match the rule', () => {
-    expect(endsInO('lion')).toEqual(null);
-    expect(endsInO('aircraft')).toEqual(null);
+    expect(matchesRegex('lion', '[^aeiou]o$', 'es')).toEqual(null);
+    expect(matchesRegex('aircraft', '[^aeiou]o$', 'es')).toEqual(null);
   });
 });

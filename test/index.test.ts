@@ -1,5 +1,4 @@
 import tinyplural from '../src/index';
-
 import nonChangingNouns from '../src/data/nonChangingNouns';
 import irregularNouns from '../src/data/irregularNouns';
 
@@ -45,7 +44,7 @@ describe('When testing tinyplural', () => {
       `${randomCount} criteria`
     );
   });
-  it('returns the correct constant + O noun', () => {
+  it.only('returns the correct constant + O noun', () => {
     expect(tinyplural('hero', 1)).toEqual('1 hero');
     expect(tinyplural('hero', randomCount)).toEqual(`${randomCount} heroes`);
     expect(tinyplural('tomato', 1)).toEqual('1 tomato');

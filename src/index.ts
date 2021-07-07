@@ -1,26 +1,59 @@
 import isIregular from './isIregular';
 import standardNoun from './standardNoun';
 import isNonChanging from './isNonChanging';
-import endsInFOrFe from './endsInFOrFe';
-import endsInY from './endsInY';
-import endsInO from './endsInO';
-import schshxzNoun from './schshxzNoun';
 import findAndReplace from './findAndReplace';
+import matchesRegex from './matchesRegex';
 
-import { FunctionWithOptions, SimpleFunction } from './types';
+import { TinyPluralFunc, SimpleFunction, FunctionTypes } from './types';
 
-const functions: (FunctionWithOptions | SimpleFunction)[] = [
+const functions: FunctionTypes[] = [
   isIregular,
   isNonChanging,
-  endsInO,
-  endsInY,
-  endsInFOrFe,
+  {
+    action: matchesRegex,
+    findKey: '[^aeiou]o$',
+    endKey: 'es',
+  },
+  {
+    action: matchesRegex,
+    findKey: '[aeiou]o$',
+    endKey: 's',
+  },
+  {
+    action: matchesRegex,
+    findKey: '[^aeiou]y$',
+    endKey: (noun: string) => noun.replace('y', 'ies'),
+  },
+  {
+    action: matchesRegex,
+    findKey: '[aeiou]y$',
+    endKey: 's',
+  },
+  {
+    action: matchesRegex,
+    findKey: '(roof|cliff|proof)',
+    endKey: 's',
+  },
+  {
+    action: matchesRegex,
+    findKey: '(f|fe)$',
+    endKey: (noun: string) => noun.replace(/(f|fe)$/, 'ves'),
+  },
   {
     action: findAndReplace,
     findKey: 'is',
     endKey: 'es',
   },
-  schshxzNoun,
+  {
+    action: matchesRegex,
+    findKey: '(z)$',
+    endKey: 'zes',
+  },
+  {
+    action: matchesRegex,
+    findKey: '(s|ch|sh|x|z)$',
+    endKey: 'es',
+  },
   {
     action: findAndReplace,
     findKey: 'is',
@@ -55,7 +88,8 @@ const tinyplural = (noun: string, count = 1): string => {
       const func = functions[i] as SimpleFunction;
       result = func(noun, count);
     } else {
-      const { action, findKey, endKey } = functions[i] as FunctionWithOptions;
+      const { action, findKey, endKey } = functions[i] as TinyPluralFunc;
+      //@ts-ignore
       result = action(noun, findKey, endKey);
     }
     if (result !== null) {

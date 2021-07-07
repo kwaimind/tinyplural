@@ -1,16 +1,24 @@
-import endsInY from '../src/endsInY';
+import matchesRegex from '../src/matchesRegex';
 
 describe('When testing endsInY', () => {
   it('returns an constant + Y with es added', () => {
-    expect(endsInY('city')).toEqual('cities');
-    expect(endsInY('baby')).toEqual('babies');
+    expect(
+      matchesRegex('city', '[^aeiou]y$', (noun: string) =>
+        noun.replace('y', 'ies')
+      )
+    ).toEqual('cities');
+    expect(
+      matchesRegex('baby', '[^aeiou]y$', (noun: string) =>
+        noun.replace('y', 'ies')
+      )
+    ).toEqual('babies');
   });
   it('returns an vowel + Y with s added', () => {
-    expect(endsInY('day')).toEqual('days');
-    expect(endsInY('guy')).toEqual('guys');
+    expect(matchesRegex('day', '[aeiou]y$', 's')).toEqual('days');
+    expect(matchesRegex('guy', '[aeiou]y$', 's')).toEqual('guys');
   });
   it('returns null if does not match the rule', () => {
-    expect(endsInY('lion')).toEqual(null);
-    expect(endsInY('aircraft')).toEqual(null);
+    expect(matchesRegex('lion', '[aeiou]y$', 'ies')).toEqual(null);
+    expect(matchesRegex('aircraft', '[aeiou]y$', 'ies')).toEqual(null);
   });
 });

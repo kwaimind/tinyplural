@@ -13,8 +13,17 @@ export type FindAndReplaceFunc = (
   replace: string
 ) => SuffixReturn;
 
-export interface FunctionWithOptions {
+export type MatchRegexFunc = (
+  noun: string,
+  expression: string,
+  replace: string
+) => SuffixReturn;
+
+// Types
+export interface TinyPluralFunc {
   action: FindAndReplaceFunc;
   findKey: string;
-  endKey: string;
+  endKey: string | SimpleFunction;
 }
+
+export type FunctionTypes = TinyPluralFunc | SimpleFunction;
