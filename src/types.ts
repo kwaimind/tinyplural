@@ -19,7 +19,6 @@ export type MatchRegexFunc = (
   replace: string
 ) => SuffixReturn;
 
-// Types
 export interface TinyPluralFunc {
   action: FindAndReplaceFunc;
   findKey: string;
