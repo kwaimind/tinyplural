@@ -1,7 +1,6 @@
 import isIregular from './isIregular';
 import standardNoun from './standardNoun';
 import isNonChanging from './isNonChanging';
-import findAndReplace from './findAndReplace';
 import matchesRegex from './matchesRegex';
 
 import { TinyPluralFunc, SimpleFunction, FunctionTypes } from './types';
@@ -40,9 +39,9 @@ const functions: FunctionTypes[] = [
     endKey: (noun: string) => noun.replace(/(f|fe)$/, 'ves'),
   },
   {
-    action: findAndReplace,
-    findKey: 'is',
-    endKey: 'es',
+    action: matchesRegex,
+    findKey: '(is)$',
+    endKey: (noun: string) => noun.substring(0, noun.length - 2) + 'es',
   },
   {
     action: matchesRegex,
@@ -55,9 +54,9 @@ const functions: FunctionTypes[] = [
     endKey: 'es',
   },
   {
-    action: findAndReplace,
-    findKey: 'is',
-    endKey: 'i',
+    action: matchesRegex,
+    findKey: '(is)$',
+    endKey: (noun: string) => noun.substring(0, noun.length - 2) + 'i',
   },
 ];
 
@@ -89,9 +88,9 @@ const tinyplural = (noun: string, count = 1): string => {
       result = func(noun, count);
     } else {
       const { action, findKey, endKey } = functions[i] as TinyPluralFunc;
-      //@ts-ignore
       result = action(noun, findKey, endKey);
     }
+
     if (result !== null) {
       cache.set(`${count} ${noun}`, `${count} ${result}`);
       return `${count} ${result}`;

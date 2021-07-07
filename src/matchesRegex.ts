@@ -6,13 +6,12 @@ const matchesRegex = (
   replace: string | SimpleFunction
 ): SuffixReturn => {
   const regex = new RegExp(expression, 'gim');
-
   if (typeof replace === 'function' && regex.test(noun)) {
     return replace(noun);
-  } else if (regex.test(noun)) {
+  }
+  if (regex.test(noun)) {
     return `${noun}${replace}`;
   }
-
   return null;
 };
 

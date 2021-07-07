@@ -44,7 +44,7 @@ describe('When testing tinyplural', () => {
       `${randomCount} criteria`
     );
   });
-  it.only('returns the correct constant + O noun', () => {
+  it('returns the correct constant + O noun', () => {
     expect(tinyplural('hero', 1)).toEqual('1 hero');
     expect(tinyplural('hero', randomCount)).toEqual(`${randomCount} heroes`);
     expect(tinyplural('tomato', 1)).toEqual('1 tomato');
