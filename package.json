@@ -22,7 +22,7 @@
     "test:coverage": "tsdx test --coverage",
     "lint": "tsdx lint",
     "prepare": "tsdx build",
-    "size": "size-limit",
+    "size": "yarn build && size-limit",
     "analyze": "size-limit --why"
   },
   "peerDependencies": {},
@@ -43,11 +43,11 @@
   "size-limit": [
     {
       "path": "dist/tinyplural.cjs.production.min.js",
-      "limit": "5 KB"
+      "limit": "1 KB"
     },
     {
       "path": "dist/tinyplural.esm.js",
-      "limit": "5 KB"
+      "limit": "1 KB"
     }
   ],
   "dependencies": {},
@@ -57,6 +57,7 @@
   "devDependencies": {
     "@size-limit/preset-small-lib": "^5.0.1",
     "global": "^4.4.0",
+    "rollup-plugin-terser": "^7.0.2",
     "size-limit": "^5.0.1",
     "tsdx": "^0.14.1"
   }

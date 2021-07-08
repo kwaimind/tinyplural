@@ -1,31 +1,56 @@
 import isIregular from './isIregular';
 import standardNoun from './standardNoun';
 import isNonChanging from './isNonChanging';
-import endsInFOrFe from './endsInFOrFe';
-import endsInY from './endsInY';
-import endsInO from './endsInO';
-import schshxzNoun from './schshxzNoun';
-import findAndReplace from './findAndReplace';
+import matchesRegex from './matchesRegex';
+import { TinyPluralFunc, SimpleFunction, FunctionTypes } from './types';
 
-import { FunctionWithOptions, SimpleFunction } from './types';
+const CHAR_S = 's';
+const CHAR_ES = 'es';
 
-const functions: (FunctionWithOptions | SimpleFunction)[] = [
+const functions: FunctionTypes[] = [
   isIregular,
   isNonChanging,
-  endsInO,
-  endsInY,
-  endsInFOrFe,
   {
-    action: findAndReplace,
-    findKey: 'is',
-    endKey: 'es',
+    findKey: '[^aeiou]o$',
+    endKey: CHAR_ES,
   },
-  schshxzNoun,
   {
-    action: findAndReplace,
-    findKey: 'is',
-    endKey: 'i',
+    findKey: '[aeiou]o$',
+    endKey: CHAR_S,
   },
+  {
+    findKey: '[^aeiou]y$',
+    endKey: (noun: string) => noun.replace('y', 'ies'),
+  },
+  {
+    findKey: '[aeiou]y$',
+    endKey: CHAR_S,
+  },
+  {
+    findKey: '(roof|cliff|proof)',
+    endKey: CHAR_S,
+  },
+  {
+    findKey: '(f|fe)$',
+    endKey: (noun: string) => noun.replace(/(f|fe)$/, 'ves'),
+  },
+  {
+    findKey: '(is)$',
+    endKey: (noun: string) => noun.substring(0, noun.length - 2) + CHAR_ES,
+  },
+  {
+    findKey: '(z)$',
+    endKey: 'zes',
+  },
+  {
+    findKey: '(s|ch|sh|x|z)$',
+    endKey: CHAR_ES,
+  },
+  {
+    findKey: '(is)$',
+    endKey: (noun: string) => noun.substring(0, noun.length - 2) + 'i',
+  },
+  standardNoun,
 ];
 
 const cache = new Map();
@@ -37,36 +62,26 @@ const cache = new Map();
  * @returns {string} A formatted string, `[2 heroes]`
  */
 const tinyplural = (noun: string, count = 1): string => {
-  if (typeof noun !== 'string') {
-    throw new TypeError('expected a string');
-  }
-
-  const cachedResult = cache.get(`${count} ${noun}`);
-
-  if (cachedResult) {
-    return cachedResult;
-  }
-
+  if (!noun || typeof noun !== 'string') throw Error('expected a string');
   if (count === 1) return `${count} ${noun}`;
 
+  const cachedResult = cache.get(`${count} ${noun}`);
+  if (cachedResult) return cachedResult;
+
+  let result;
   for (let i = 0; i < functions.length; i += 1) {
-    let result;
     if (typeof functions[i] === 'function') {
       const func = functions[i] as SimpleFunction;
       result = func(noun, count);
     } else {
-      const { action, findKey, endKey } = functions[i] as FunctionWithOptions;
-      result = action(noun, findKey, endKey);
+      const { findKey, endKey } = functions[i] as TinyPluralFunc;
+      result = matchesRegex(noun, findKey, endKey);
     }
-    if (result !== null) {
-      cache.set(`${count} ${noun}`, `${count} ${result}`);
-      return `${count} ${result}`;
-    }
+    if (result !== null) break;
   }
 
-  const standard = standardNoun(noun);
-  cache.set(`${count} ${noun}`, `${count} ${standard}`);
-  return `${count} ${standard}`;
+  cache.set(`${count} ${noun}`, `${count} ${result}`);
+  return `${count} ${result}`;
 };
 
 export default tinyplural;

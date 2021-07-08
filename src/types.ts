@@ -7,14 +7,9 @@ export interface NounObject {
 
 export type SimpleFunction = (noun: string, count?: number) => SuffixReturn;
 
-export type FindAndReplaceFunc = (
-  noun: string,
-  find: string,
-  replace: string
-) => SuffixReturn;
-
-export interface FunctionWithOptions {
-  action: FindAndReplaceFunc;
+export interface TinyPluralFunc {
   findKey: string;
-  endKey: string;
+  endKey: string | SimpleFunction;
 }
+
+export type FunctionTypes = TinyPluralFunc | SimpleFunction;

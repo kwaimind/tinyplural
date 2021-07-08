@@ -1,16 +1,24 @@
-import endsInFOrFe from '../src/endsInFOrFe';
+import matchesRegex from '../src/matchesRegex';
 
 describe('When testing endsInFOrFe', () => {
   it('returns a noun with f or fe removed and ves added', () => {
-    expect(endsInFOrFe('leaf')).toEqual('leaves');
-    expect(endsInFOrFe('knife')).toEqual('knives');
+    expect(
+      matchesRegex('leaf', '(f|fe)$', (noun: string) =>
+        noun.replace(/(f|fe)$/, 'ves')
+      )
+    ).toEqual('leaves');
+    expect(
+      matchesRegex('knife', '(f|fe)$', (noun: string) =>
+        noun.replace(/(f|fe)$/, 'ves')
+      )
+    ).toEqual('knives');
   });
   it('handles the exceptions', () => {
-    expect(endsInFOrFe('roof')).toEqual('roofs');
-    expect(endsInFOrFe('cliff')).toEqual('cliffs');
+    expect(matchesRegex('roof', '(roof|cliff|proof)', 's')).toEqual('roofs');
+    expect(matchesRegex('cliff', '(roof|cliff|proof)', 's')).toEqual('cliffs');
   });
   it('returns null if does not match the rule', () => {
-    expect(endsInFOrFe('lion')).toEqual(null);
-    expect(endsInFOrFe('baby')).toEqual(null);
+    expect(matchesRegex('lion', '(roof|cliff|proof)', 's')).toEqual(null);
+    expect(matchesRegex('baby', '(roof|cliff|proof)', 's')).toEqual(null);
   });
 });
