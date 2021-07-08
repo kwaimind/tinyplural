@@ -164,13 +164,13 @@ describe.skip('When testing tinyplural', () => {
   });
 });
 
-describe.skip('When negative values', () => {
+describe('When negative values', () => {
   it('returns i for nouns ending in us', () => {
     expect(tinyplural('bin', -1)).toEqual('-1 bins');
   });
 });
 
-describe.skip('Checking data arrays for duplicates', () => {
+describe('Checking data arrays for duplicates', () => {
   it('nonChangingNouns', () => {
     expect(new Set(nonChangingNouns).size !== nonChangingNouns.length).toBe(
       false
