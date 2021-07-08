@@ -1,4 +1,4 @@
-import { NounObject } from '../types';
+import { NounObject } from './types';
 
 /**
  * An array of irregular nouns that follow no specific rules

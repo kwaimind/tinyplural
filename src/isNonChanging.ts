@@ -1,5 +1,5 @@
 import { SuffixReturn } from './types';
-import nonChangingNouns from './data/nonChangingNouns';
+import nonChangingNouns from './nonChangingNouns.data';
 
 const isNonChanging = (noun: string): SuffixReturn => {
   return nonChangingNouns.includes(noun) ? noun : null;
