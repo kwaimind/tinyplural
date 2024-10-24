@@ -1,5 +1,5 @@
 import type { NounObject, SuffixReturn } from './types';
-import {irregularNouns} from './irregularNouns.data';
+import { irregularNouns } from './data';
 
 export const isIregular = (noun: string, count = 1): SuffixReturn => {
   const kind: keyof NounObject = count === 1 ? 'single' : 'plural';

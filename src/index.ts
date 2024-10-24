@@ -1,8 +1,8 @@
-import {isIregular} from './isIregular';
-import {standardNoun} from './standardNoun';
-import {isNonChanging} from './isNonChanging';
-import {matchesRegex} from './matchesRegex';
-import type { TinyPluralFunc, SimpleFunction, FunctionTypes } from './types';
+import { isIregular } from './isIregular';
+import { standardNoun } from './standardNoun';
+import { isNonChanging } from './isNonChanging';
+import { matchesRegex } from './matchesRegex';
+import type { SimpleFunction, FunctionTypes } from './types';
 
 const CHAR_S = 's';
 const CHAR_ES = 'es';
@@ -53,6 +53,10 @@ const functions: FunctionTypes[] = [
   standardNoun,
 ];
 
+const isSimpleFunction = (func: FunctionTypes): func is SimpleFunction => {
+  return typeof func === 'function';
+};
+
 /**
  *
  * @param noun The singular noun `[hero]`
@@ -60,19 +64,22 @@ const functions: FunctionTypes[] = [
  * @returns {string} A formatted string, `[2 heroes]`
  */
 const tinyplural = (noun: string, count = 1): string => {
+  if (!noun) return '';
+
   if (count === 1) return `${count} ${noun}`;
 
   let result;
-  for (let i = 0; i < functions.length; i += 1) {
-    if (typeof functions[i] === 'function') {
-      const func = functions[i] as SimpleFunction;
+
+  functions.some((x) => {
+    if (isSimpleFunction(x)) {
+      const func = x;
       result = func(noun, count);
     } else {
-      const { findKey, endKey } = functions[i] as TinyPluralFunc;
+      const { findKey, endKey } = x;
       result = matchesRegex(noun, findKey, endKey);
     }
-    if (result !== null) break;
-  }
+    if (result !== null) return true;
+  });
 
   return `${count} ${result}`;
 };
