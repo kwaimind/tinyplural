@@ -1,6 +1,6 @@
-import { SuffixReturn, SimpleFunction } from './types';
+import type { SuffixReturn, SimpleFunction } from './types';
 
-const matchesRegex = (
+export const matchesRegex = (
   noun: string,
   expression: string,
   replace: string | SimpleFunction
@@ -15,4 +15,3 @@ const matchesRegex = (
   return null;
 };
 
-export default matchesRegex;

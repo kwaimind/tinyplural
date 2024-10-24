@@ -1,7 +1,7 @@
 /**
  * An array of irregular nouns where the plural doesn't change
  */
-const nonChangingNouns: Array<string> = [
+export const nonChangingNouns: string[] = [
   'aircraft',
   'deer',
   'fish',
@@ -16,4 +16,3 @@ const nonChangingNouns: Array<string> = [
   'ice',
 ];
 
-export default nonChangingNouns;

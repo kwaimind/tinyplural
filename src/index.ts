@@ -1,8 +1,8 @@
-import isIregular from './isIregular';
-import standardNoun from './standardNoun';
-import isNonChanging from './isNonChanging';
-import matchesRegex from './matchesRegex';
-import { TinyPluralFunc, SimpleFunction, FunctionTypes } from './types';
+import {isIregular} from './isIregular';
+import {standardNoun} from './standardNoun';
+import {isNonChanging} from './isNonChanging';
+import {matchesRegex} from './matchesRegex';
+import type { TinyPluralFunc, SimpleFunction, FunctionTypes } from './types';
 
 const CHAR_S = 's';
 const CHAR_ES = 'es';
@@ -53,8 +53,6 @@ const functions: FunctionTypes[] = [
   standardNoun,
 ];
 
-const cache = new Map();
-
 /**
  *
  * @param noun The singular noun `[hero]`
@@ -62,11 +60,7 @@ const cache = new Map();
  * @returns {string} A formatted string, `[2 heroes]`
  */
 const tinyplural = (noun: string, count = 1): string => {
-  if (!noun || typeof noun !== 'string') throw Error('expected a string');
   if (count === 1) return `${count} ${noun}`;
-
-  const cachedResult = cache.get(`${count} ${noun}`);
-  if (cachedResult) return cachedResult;
 
   let result;
   for (let i = 0; i < functions.length; i += 1) {
@@ -80,7 +74,6 @@ const tinyplural = (noun: string, count = 1): string => {
     if (result !== null) break;
   }
 
-  cache.set(`${count} ${noun}`, `${count} ${result}`);
   return `${count} ${result}`;
 };
 

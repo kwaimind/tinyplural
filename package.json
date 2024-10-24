@@ -1,41 +1,31 @@
 {
   "version": "1.1.4",
   "license": "MIT",
+  "type": "module",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
   "files": [
     "dist",
     "src"
   ],
-  "engines": {
-    "node": ">=10"
-  },
   "repository": {
     "type": "git",
     "url": "https://github.com/kwaimind/tinyplural.git"
   },
   "scripts": {
     "start": "tsdx watch",
-    "build": "tsdx test && tsdx build",
-    "test": "tsdx test",
-    "test:watch": "tsdx test --watch",
-    "test:coverage": "tsdx test --coverage",
-    "lint": "tsdx lint",
-    "prepare": "tsdx build",
+    "build": "tsup",
+    "test": "vitest run",
+    "typecheck": "tsc --noEmit",
+    "test:coverage": "vitest --coverage",
+    "lint": "eslint",
     "size": "yarn build && size-limit",
     "analyze": "size-limit --why"
   },
-  "peerDependencies": {},
   "husky": {
     "hooks": {
-      "pre-commit": "tsdx lint"
+      "pre-commit": "pnpm lint"
     }
-  },
-  "prettier": {
-    "printWidth": 80,
-    "semi": true,
-    "singleQuote": true,
-    "trailingComma": "es5"
   },
   "name": "tinyplural",
   "author": "Daniel Reed",
@@ -50,15 +40,16 @@
       "limit": "1 KB"
     }
   ],
-  "dependencies": {},
-  "resolutions": {
-    "tsdx/**/node-notifier": "10.0.0"
-  },
   "devDependencies": {
+    "@eslint/js": "^9.13.0",
     "@size-limit/preset-small-lib": "^5.0.1",
-    "global": "^4.4.0",
-    "rollup-plugin-terser": "^7.0.2",
+    "eslint": "^9.13.0",
+    "globals": "^15.11.0",
+    "prettier": "3.3.3",
     "size-limit": "^5.0.1",
-    "tsdx": "^0.14.1"
+    "tsup": "^8.3.0",
+    "typescript": "^5.6.3",
+    "typescript-eslint": "^8.11.0",
+    "vitest": "^2.1.3"
   }
 }

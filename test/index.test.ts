@@ -1,6 +1,6 @@
 import tinyplural from '../src/index';
-import nonChangingNouns from '../src/nonChangingNouns.data';
-import irregularNouns from '../src/irregularNouns.data';
+import { nonChangingNouns } from '../src/nonChangingNouns.data';
+import { irregularNouns } from '../src/irregularNouns.data';
 
 let randomCount: number;
 
@@ -10,13 +10,13 @@ beforeAll(() => {
 
 describe.skip('When testing tinyplural', () => {
   it('throws error when string is not passed', () => {
-    //@ts-ignore
+    //@ts-expect-error test expected error
     expect(() => tinyplural()).toThrow(TypeError);
-    //@ts-ignore
+    //@ts-expect-error test expected error
     expect(() => tinyplural()).toThrow('expected a string');
-    //@ts-ignore
+    //@ts-expect-error test expected error
     expect(() => tinyplural(123)).toThrow('expected a string');
-    //@ts-ignore
+    //@ts-expect-error test expected error
     expect(() => tinyplural(null, 123)).toThrow('expected a string');
   });
   it('returns the correct irregular noun', () => {
@@ -177,7 +177,7 @@ describe('Checking data arrays for duplicates', () => {
     );
   });
   it('irregularNouns', () => {
-    const uniqueValues = new Set(irregularNouns.map(item => item.single));
+    const uniqueValues = new Set(irregularNouns.map((item) => item.single));
     expect(uniqueValues.size < irregularNouns.length).toBe(false);
   });
 });
