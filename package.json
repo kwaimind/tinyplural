@@ -1,11 +1,23 @@
 {
   "version": "1.1.4",
   "license": "MIT",
-  "main": "dist/index.js",
-  "typings": "dist/index.d.ts",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.mts",
+  "exports": {
+    ".": {
+      "import": {
+        "types": "./dist/index.d.mts",
+        "default": "./dist/index.mjs"
+      },
+      "require": {
+        "types": "./dist/index.d.cts",
+        "default": "./dist/index.cjs"
+      }
+    }
+  },
   "files": [
-    "dist",
-    "src"
+    "dist"
   ],
   "engines": {
     "node": ">=10"
@@ -15,50 +27,21 @@
     "url": "https://github.com/kwaimind/tinyplural.git"
   },
   "scripts": {
-    "start": "tsdx watch",
-    "build": "tsdx test && tsdx build",
-    "test": "tsdx test",
-    "test:watch": "tsdx test --watch",
-    "test:coverage": "tsdx test --coverage",
-    "lint": "tsdx lint",
-    "prepare": "tsdx build",
-    "size": "yarn build && size-limit",
-    "analyze": "size-limit --why"
-  },
-  "peerDependencies": {},
-  "husky": {
-    "hooks": {
-      "pre-commit": "tsdx lint"
-    }
-  },
-  "prettier": {
-    "printWidth": 80,
-    "semi": true,
-    "singleQuote": true,
-    "trailingComma": "es5"
+    "build": "tsdown",
+    "dev": "tsdown --watch",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "lint": "biome check .",
+    "lint:fix": "biome check --write --unsafe .",
+    "format": "biome format --write ."
   },
   "name": "tinyplural",
   "author": "Daniel Reed",
-  "module": "dist/tinyplural.esm.js",
-  "size-limit": [
-    {
-      "path": "dist/tinyplural.cjs.production.min.js",
-      "limit": "1 KB"
-    },
-    {
-      "path": "dist/tinyplural.esm.js",
-      "limit": "1 KB"
-    }
-  ],
-  "dependencies": {},
-  "resolutions": {
-    "tsdx/**/node-notifier": "10.0.0"
-  },
   "devDependencies": {
-    "@size-limit/preset-small-lib": "^5.0.1",
-    "global": "^4.4.0",
-    "rollup-plugin-terser": "^7.0.2",
-    "size-limit": "^5.0.1",
-    "tsdx": "^0.14.1"
+    "@biomejs/biome": "^2.3.12",
+    "@vitest/ui": "^4.0.18",
+    "tsdown": "^0.20.1",
+    "typescript": "^5.9.3",
+    "vitest": "^4.0.18"
   }
 }
