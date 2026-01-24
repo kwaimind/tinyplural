@@ -27,9 +27,7 @@ It's fully written in TypeScript, with a test-suite to go with it.
 The library is available as an npm package. To install the package run:
 
 ```
-npm install tinyplural --save
-# or with yarn
-yarn add tinyplural
+pnpm add tinyplural
 ```
 
 Want to get involved! Read our [Contributors' Guide](./CONTRIBUTING.md) for details.
