@@ -1,4 +1,4 @@
-import matchesRegex from '../src/matchesRegex';
+import { matchesRegex } from '../src/matchesRegex';
 
 describe('When testing endsInY', () => {
   it('returns an constant + Y with es added', () => {

@@ -1,4 +1,4 @@
-import isNonChanging from '../src/isNonChanging';
+import { isNonChanging } from '../src/isNonChanging';
 
 describe('When testing isNonChanging', () => {
   it('returns an non-changing noun', () => {

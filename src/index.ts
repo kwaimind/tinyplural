@@ -1,7 +1,7 @@
-import isIregular from './isIregular';
-import isNonChanging from './isNonChanging';
-import matchesRegex from './matchesRegex';
-import standardNoun from './standardNoun';
+import { isIregular } from './isIregular';
+import { isNonChanging } from './isNonChanging';
+import { matchesRegex } from './matchesRegex';
+import { standardNoun } from './standardNoun';
 import type { FunctionTypes, SimpleFunction, TinyPluralFunc } from './types';
 
 const CHAR_S = 's';
@@ -61,7 +61,7 @@ const cache = new Map();
  * @param count The count of that noun, `[2]`
  * @returns {string} A formatted string, `[2 heroes]`
  */
-const tinyplural = (noun: string, count = 1): string => {
+export const tinyplural = (noun: string, count = 1): string => {
   if (!noun || typeof noun !== 'string') throw Error('expected a string');
   if (count === 1) return `${count} ${noun}`;
 

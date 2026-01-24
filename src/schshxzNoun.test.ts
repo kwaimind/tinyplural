@@ -1,4 +1,4 @@
-import matchesRegex from '../src/matchesRegex';
+import { matchesRegex } from '../src/matchesRegex';
 
 describe('When testing schshxzNoun', () => {
   it('returns the correct noun', () => {

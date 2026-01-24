@@ -1,4 +1,4 @@
-import isIregular from '../src/isIregular';
+import { isIregular } from '../src/isIregular';
 
 describe('When testing isIregular', () => {
   it('returns an irregular noun', () => {

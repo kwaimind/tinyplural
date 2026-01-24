@@ -1,4 +1,4 @@
-import matchesRegex from '../src/matchesRegex';
+import { matchesRegex } from '../src/matchesRegex';
 
 describe('When testing endsInFOrFe', () => {
   it('returns a noun with f or fe removed and ves added', () => {

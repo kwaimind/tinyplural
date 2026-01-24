@@ -1,4 +1,4 @@
-import matchesRegex from '../src/matchesRegex';
+import { matchesRegex } from '../src/matchesRegex';
 
 describe('When testing nouns ending in O', () => {
   it('returns an constant + O with es added', () => {

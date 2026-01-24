@@ -1,4 +1,4 @@
-import standardNoun from '../src/standardNoun';
+import { standardNoun } from '../src/standardNoun';
 
 describe('When testing standardNoun', () => {
   it('returns simple noun with s', () => {

@@ -3,7 +3,7 @@ import type { NounObject } from './types';
 /**
  * An array of irregular nouns that follow no specific rules
  */
-const irregularNouns: Array<NounObject> = [
+export const irregularNouns: Array<NounObject> = [
   {
     single: 'child',
     plural: 'children',
@@ -49,5 +49,3 @@ const irregularNouns: Array<NounObject> = [
     plural: 'criteria',
   },
 ];
-
-export default irregularNouns;
