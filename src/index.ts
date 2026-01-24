@@ -1,8 +1,8 @@
 import isIregular from './isIregular';
-import standardNoun from './standardNoun';
 import isNonChanging from './isNonChanging';
 import matchesRegex from './matchesRegex';
-import { TinyPluralFunc, SimpleFunction, FunctionTypes } from './types';
+import standardNoun from './standardNoun';
+import type { FunctionTypes, SimpleFunction, TinyPluralFunc } from './types';
 
 const CHAR_S = 's';
 const CHAR_ES = 'es';
@@ -48,7 +48,7 @@ const functions: FunctionTypes[] = [
   },
   {
     findKey: '(is)$',
-    endKey: (noun: string) => noun.substring(0, noun.length - 2) + 'i',
+    endKey: (noun: string) => `${noun.substring(0, noun.length - 2)}i`,
   },
   standardNoun,
 ];

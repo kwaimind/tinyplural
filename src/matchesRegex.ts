@@ -1,4 +1,4 @@
-import { SuffixReturn, SimpleFunction } from './types';
+import type { SimpleFunction, SuffixReturn } from './types';
 
 const matchesRegex = (
   noun: string,
