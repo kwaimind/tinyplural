@@ -1,6 +1,5 @@
 import { isIregular } from './isIregular';
 import { isNonChanging } from './isNonChanging';
-import { standardNoun } from './standardNoun';
 
 const CHAR_S = 's';
 const CHAR_ES = 'es';
@@ -17,7 +16,7 @@ const rules: Array<[RegExp | null, (n: string) => string | null]> = [
   [/(is)$/i, (n) => n.substring(0, n.length - 2) + CHAR_ES],
   [/(z)$/i, (n) => `${n}zes`],
   [/(s|ch|sh|x|z)$/i, (n) => n + CHAR_ES],
-  [null, standardNoun],
+  [null, (n) => `${n}s`],
 ];
 
 /**
@@ -42,5 +41,3 @@ export const tinyplural = (noun: string, count = 1): string => {
 
   return `${count} ${noun}`;
 };
-
-export default tinyplural;
