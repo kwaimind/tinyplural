@@ -1,6 +1,6 @@
 # ✍ tinyplural
 
-[![bundlephobia](https://img.shields.io/bundlephobia/minzip/tinyplural?style=flat-square)](https://bundlephobia.com/package/tinyplural) [![npm version](https://img.shields.io/npm/v/tinyplural?style=flat-square)](https://www.npmjs.com/package/tinyplural) [![Run Jest Tests](https://github.com/kwaimind/tinyplural/actions/workflows/main.yml/badge.svg)](https://github.com/kwaimind/tinyplural/actions/workflows/main.yml) [![CodeQL](https://github.com/kwaimind/tinyplural/actions/workflows/codeql-analysis.yml/badge.svg)](https://github.com/kwaimind/tinyplural/actions/workflows/codeql-analysis.yml)
+[![bundlephobia](https://img.shields.io/bundlephobia/minzip/tinyplural?style=flat-square)](https://bundlephobia.com/package/tinyplural) [![npm version](https://img.shields.io/npm/v/tinyplural?style=flat-square)](https://www.npmjs.com/package/tinyplural)
 
 > A tiny pluralizer for English nouns
 

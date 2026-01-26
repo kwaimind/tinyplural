@@ -5,7 +5,7 @@ export const matchesRegex = (
   expression: string,
   replace: string | SimpleFunction
 ): SuffixReturn => {
-  const regex = new RegExp(expression, 'gim');
+  const regex = new RegExp(expression, 'i');
   if (typeof replace === 'function' && regex.test(noun)) {
     return replace(noun);
   }
