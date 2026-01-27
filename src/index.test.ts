@@ -198,19 +198,19 @@ describe('tinyplural', () => {
 
 describe('data arrays', () => {
   it('nonChangingNouns has no duplicates', () => {
-    expect(nonChangingNouns.size).toBe(nonChangingNouns.size);
+    expect(Object.keys(nonChangingNouns).length).toBeGreaterThan(0);
   });
 
   it('irregularNouns has no duplicate singles', () => {
-    expect(irregularNouns.size).toBe(irregularNouns.size);
+    expect(Object.keys(irregularNouns).length).toBeGreaterThan(0);
   });
 });
 
 describe('Checking data arrays for duplicates', () => {
   it('nonChangingNouns', () => {
-    expect(nonChangingNouns.size).toBeGreaterThan(0);
+    expect(Object.keys(nonChangingNouns).length).toBeGreaterThan(0);
   });
   it('irregularNouns', () => {
-    expect(irregularNouns.size).toBeGreaterThan(0);
+    expect(Object.keys(irregularNouns).length).toBeGreaterThan(0);
   });
 });

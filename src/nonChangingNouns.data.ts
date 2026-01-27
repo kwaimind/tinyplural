@@ -1,7 +1,4 @@
-/**
- * Set of irregular nouns where the plural doesn't change
- */
-export const nonChangingNouns = new Set([
+export const nonChangingNouns = [
   'aircraft',
   'deer',
   'fish',
@@ -14,4 +11,4 @@ export const nonChangingNouns = new Set([
   'means',
   'series',
   'ice',
-]);
+] as const;
